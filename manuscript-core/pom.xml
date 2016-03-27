@@ -1,0 +1,16 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>hu.iit.miskolc</groupId>
+  <artifactId>manuscript-core</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <modules>
+  	<module>manuscript-core-util</module>
+  	<module>manuscript-core-model</module>
+  	<module>manuscript-core-controller</module>
+  	<module>manuscript-core-persist</module>
+  	<module>manuscript-core-persist-mysql</module>
+  	<module>manuscript-core-service</module>
+  	<module>manuscript-core-service-impl</module>
+  </modules>
+</project>
