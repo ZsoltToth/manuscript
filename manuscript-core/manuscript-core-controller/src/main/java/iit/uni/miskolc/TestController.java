@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class TestController {
 
 	
-	@RequestMapping ("/Hello")
+	@RequestMapping ("/index")
 	public String Hello(Model model) {
-		return "Hello";
+		return "index";
 	}
 }
