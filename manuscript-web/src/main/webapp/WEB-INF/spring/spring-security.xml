@@ -6,7 +6,7 @@
 
 	<security:http auto-config="true">
 		<security:intercept-url pattern="/**" access="hasRole('ROLE_AUTHOR')" />
-		<security:form-login default-target-url="/Hello"
+		<security:form-login default-target-url="/index"
 			username-parameter="username" password-parameter="password" />
 	</security:http>
 

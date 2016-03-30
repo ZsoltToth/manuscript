@@ -8,11 +8,23 @@
 	</parent>
 	<artifactId>manuscript-core-controller</artifactId>
 
+	<properties>
+		<spring.version>4.2.5.RELEASE</spring.version>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>hu.iit.miskolc</groupId>
 			<artifactId>manuscript-core-service</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+
+		<!-- Spring web-mvc -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
 	</dependencies>
 </project>

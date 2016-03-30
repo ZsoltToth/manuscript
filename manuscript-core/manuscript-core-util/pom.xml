@@ -9,21 +9,22 @@
 	<artifactId>manuscript-core-util</artifactId>
 
 	<properties>
+		<spring.version>4.2.5.RELEASE</spring.version>
 		<commonLogging.version>1.2</commonLogging.version>
 		<log4j.version>1.2.17</log4j.version>
 		<slf4j.version>1.7.18</slf4j.version>
-		<spring.version>4.2.5.RELEASE</spring.version>
 	</properties>
 
 	<dependencies>
 
-		<!-- SPRING WEBMVC -->
+		<!-- Spring core -->
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
+			<artifactId>spring-core</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-		
+
+
 		<!-- Common logging -->
 		<dependency>
 			<groupId>commons-logging</groupId>
@@ -35,12 +36,6 @@
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>${log4j.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${slf4j.version}</version>
 		</dependency>
 
 		<dependency>
