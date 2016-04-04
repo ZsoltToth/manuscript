@@ -12,5 +12,10 @@
   		<artifactId>manuscript-core-service</artifactId>
   		<version>0.0.1-SNAPSHOT</version>
   	</dependency>
+  	<dependency>
+  		<groupId>hu.iit.miskolc</groupId>
+  		<artifactId>manuscript-core-persist</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
   </dependencies>
 </project>
