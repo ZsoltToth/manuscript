@@ -17,5 +17,5 @@ public interface UserMapper {
 	
 	void deleteUserByID(String id);
 	
-	void editUserData(User user);
+	void updateUserData(User user);
 }
