@@ -9,6 +9,8 @@ import iit.uni.miskolc.user.registration.User;
  */
 public interface UserMapper {
 	
+	Collection<User> selectUsers();
+	
 	User selectUserByID(String id);
 	
 	void insertUser(User user);
