@@ -11,9 +11,27 @@
 		<spring-security.version>4.0.4.RELEASE</spring-security.version>
 		<spring.version>4.2.5.RELEASE</spring.version>
 		<jstl.version>1.2</jstl.version>
+		<jackson.version>2.7.3</jackson.version>
+		<webjars-locator.version>0.1</webjars-locator.version>
+		<manuscript-core-service-impl.version>0.0.1-SNAPSHOT</manuscript-core-service-impl.version>
+		<angularjs.webjar.version>1.5.2</angularjs.webjar.version>
+		<foundation.webjar.version>6.2.0</foundation.webjar.version>
+		<velocity.version>1.7</velocity.version>
+		<velocity.tools.version>2.0</velocity.tools.version>
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
 		<!-- manuscript core module -->
 		<dependency>
 			<groupId>hu.iit.miskolc</groupId>
@@ -45,33 +63,38 @@
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>webjars-locator</artifactId>
-			<version>0.1</version>
+			<version>${webjars-locator.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>angularjs</artifactId>
-			<version>1.5.2</version>
+			<version>${angularjs.webjar.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>foundation</artifactId>
-			<version>6.2.0</version>
+			<version>${foundation.webjar.version}</version>
 		</dependency>
 
 		<!-- Velocity for the html mapping -->
 		<dependency>
 			<groupId>org.apache.velocity</groupId>
 			<artifactId>velocity</artifactId>
-			<version>1.7</version>
+			<version>${velocity.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.velocity</groupId>
 			<artifactId>velocity-tools</artifactId>
-			<version>2.0</version>
+			<version>${velocity.tools.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>hu.iit.miskolc</groupId>
+			<artifactId>manuscript-core-service-impl</artifactId>
+			<version>${manuscript-core-service-impl.version}</version>
+		</dependency>
 	</dependencies>
 
 	<build>

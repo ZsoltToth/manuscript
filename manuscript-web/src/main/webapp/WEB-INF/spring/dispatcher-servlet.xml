@@ -5,11 +5,12 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
-
-	<!-- defining base component scan. It will search in iit.* packages. -->
-	<context:component-scan base-package="iit" />
-
+	
 	<mvc:annotation-driven />
+	<context:component-scan base-package="iit">
+<!-- 		<context:include-filter type="annotation" -->
+<!-- 			expression="org.springframework.stereotype.Controller" /> -->
+	</context:component-scan>
 
 	<!-- Velocity config -->
 	<bean id="velocityConfig"
@@ -28,4 +29,15 @@
 	<!-- resources mapping -->
 	<mvc:resources location="/resources/" mapping="/resources/**" />
 	<mvc:resources mapping="/webjars/**" location="/webjars/" />
+
+	<bean id="jacksonMessageConverter"
+		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"></bean>
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<ref bean="jacksonMessageConverter" />
+			</list>
+		</property>
+	</bean>
 </beans>

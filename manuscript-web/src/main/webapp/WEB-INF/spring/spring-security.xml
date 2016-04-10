@@ -5,14 +5,14 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<security:http>
-		<security:intercept-url pattern="/**" access="hasRole('ROLE_EDITOR')" />
+<!-- 		<security:intercept-url pattern="/**" access="hasRole('ROLE_EDITOR')" /> -->
 		<security:intercept-url pattern="/**" access="hasRole('ROLE_ADMIN')" />
-		<security:intercept-url pattern="/**" access="hasRole('ROLE_AUTHOR')" />
+<!-- 		<security:intercept-url pattern="/**" access="hasRole('ROLE_AUTHOR')" /> -->
 		<security:form-login 
 			default-target-url="/index" 
 			always-use-default-target="true" />
 		<security:logout delete-cookies="JSESSIONID"/>
-		<security:csrf />
+		<security:csrf disabled="true" />
 		<security:session-management >
 			<security:concurrency-control max-sessions="1"/>
 		</security:session-management>

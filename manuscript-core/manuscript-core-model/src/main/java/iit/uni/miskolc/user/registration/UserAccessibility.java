@@ -6,10 +6,10 @@ package iit.uni.miskolc.user.registration;
  * @author Balazs Kovacs
  *
  */
-public class UserRegistrationAccessibility {
+public class UserAccessibility {
 	private String email;
 	private String phoneNumber;
-	private UserRegistrationAddress address;
+//	private UserAddress address;
 
 	public String getEmail() {
 		return email;
@@ -27,12 +27,12 @@ public class UserRegistrationAccessibility {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public UserRegistrationAddress getAddress() {
-		return address;
-	}
-
-	public void setAddress(UserRegistrationAddress address) {
-		this.address = address;
-	}
+//	public UserAddress getAddress() {
+//		return address;
+//	}
+//
+//	public void setAddress(UserAddress address) {
+//		this.address = address;
+//	}
 
 }

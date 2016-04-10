@@ -7,22 +7,27 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>manuscript-core-model</artifactId>
+	
+	<properties>
+	<manuscript.core.util.version>0.0.1-SNAPSHOT</manuscript.core.util.version>
+	<spring.version>4.2.5.RELEASE</spring.version>
+	</properties>
+	
 	<dependencies>
 		<dependency>
 			<groupId>hu.iit.miskolc</groupId>
 			<artifactId>manuscript-core-util</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${manuscript.core.util.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-beans</artifactId>
-			<version>4.2.5.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>4.2.5.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
-
 	</dependencies>
 </project>

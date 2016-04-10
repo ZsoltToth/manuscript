@@ -9,22 +9,31 @@
 	<artifactId>manuscript-core-controller</artifactId>
 
 	<properties>
+		<manuscript-core-service.version>0.0.1-SNAPSHOT</manuscript-core-service.version>
 		<spring.version>4.2.5.RELEASE</spring.version>
+		<javax.servlet.version>3.1.0</javax.servlet.version>
 	</properties>
 
 	<dependencies>
+		<!-- anuscript core module -->
 		<dependency>
 			<groupId>hu.iit.miskolc</groupId>
 			<artifactId>manuscript-core-service</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${manuscript-core-service.version}</version>
 		</dependency>
-
 		<!-- Spring web-mvc -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+		<!-- Javax servlet -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>${javax.servlet.version}</version>
+		</dependency>
+
 
 	</dependencies>
 </project>

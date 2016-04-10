@@ -6,7 +6,7 @@ package iit.uni.miskolc.user.registration;
  * @author Balazs Kovacs
  *
  */
-public class UserRegistrationAddress {
+public class UserAddress {
 	private String address;
 	private String city;
 	private Integer postaCode;

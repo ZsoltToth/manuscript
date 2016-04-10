@@ -2,23 +2,16 @@ package iit.uni.miskolc.user.registration;
 
 import java.util.Date;
 
-/**
- * Define a new user in the system with ROLE_USER role. This user has
- * availability to modify own data only.
- * 
- * @author Balazs Kovacs
- *
- */
-public class UserRegistration {
+public class UserRegistrationRequest {
 	private String firstName;
 	private String lastName;
 	private String userName;
 	private String password;
-	private Date dateOfBirth;
+	private Date birthDate;
 	private String personalDescription;
-	private String role;
 	private Date registrationDate;
-	private UserRegistrationAccessibility accessibility;
+	private String email;
+	private String phoneNumber;
 
 	public String getFirstName() {
 		return firstName;
@@ -52,12 +45,12 @@ public class UserRegistration {
 		this.password = password;
 	}
 
-	public Date getDateOfBirth() {
-		return dateOfBirth;
+	public Date getBirthDate() {
+		return birthDate;
 	}
 
-	public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
 	}
 
 	public String getPersonalDescription() {
@@ -68,14 +61,6 @@ public class UserRegistration {
 		this.personalDescription = personalDescription;
 	}
 
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
-
 	public Date getRegistrationDate() {
 		return registrationDate;
 	}
@@ -84,12 +69,20 @@ public class UserRegistration {
 		this.registrationDate = registrationDate;
 	}
 
-	public UserRegistrationAccessibility getAccessibility() {
-		return accessibility;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setAccessibility(UserRegistrationAccessibility accessibility) {
-		this.accessibility = accessibility;
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
 }

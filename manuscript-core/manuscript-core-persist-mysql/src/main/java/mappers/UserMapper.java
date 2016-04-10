@@ -1,4 +1,6 @@
-package iit.uni.miskolc.user.mapper;
+package mappers;
+
+import java.util.Collection;
 
 import iit.uni.miskolc.user.registration.User;
 
