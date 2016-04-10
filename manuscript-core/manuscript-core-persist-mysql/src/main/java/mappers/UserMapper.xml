@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.UserMapper">
+
+	<resultMap type="User" id="UserResultMap">
+		<id property="id" column="id" javaType="UUID" jdbcType="VARCHAR"
+			typeHandler="UUIDTypeHandler" />
+		<result property="name" column="name" />
+	</resultMap>
+
+
+	<select id="selectUsers" resultMap="UserResultMap">
+		select * from User;
+	</select>
+
+	<select id="selectUserByID" parameterType="String" resultMap="UserResultMap">
+		select * from User where id like #{id};
+	</select>
+
+	<insert id="insertUser">
+		insert into User values(id, first_name, last_name,
+		user_name,
+		password,birth_date,personal_description, role,
+		registration_date, accessibility},
+		values
+		(#{id},#{first_name},#{last_name},#{user_name},#{password},#{birth_date},
+		#{personal_description},#{role},#{registration_date},#{accessibility})
+	</insert>
+
+
+	<delete id="deleteUser">
+		delete from User where id = #{id};
+	</delete>
+
+	<update id="updateUser">
+		update User set
+		id = #{id}
+		first_name = #{first_name},
+		last_name = #{last_name},
+		user_name = #{user_name},
+		password = #{password},
+		birthDate = #{birthDate},
+		personal_description = #{personal_description},
+		role = #{role},
+		registration_date = #{registration_date},
+		accessibility = #{accessibility}
+		where id = #{id}
+	</update>
+</mapper>
