@@ -1,4 +1,4 @@
-package iit.uni.miskolc.user.registration;
+package iit.uni.miskolc.controller.response;
 
 import iit.uni.miskolc.basic.response.ResponseBasic;
 
