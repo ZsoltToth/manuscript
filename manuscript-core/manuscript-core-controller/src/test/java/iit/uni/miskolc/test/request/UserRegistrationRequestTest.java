@@ -17,13 +17,17 @@ public class UserRegistrationRequestTest {
 
 	List<UserRegistrationRequest> requestTest = new ArrayList<UserRegistrationRequest>();
 	UserRegistrationRequest request = new UserRegistrationRequest();
-	
+
 	{
 		request.setFirstName(null);
 		request.setLastName(null);
 		requestTest.add(request);
+
+		request.setFirstName("FirstName");
+		request.setLastName("LastName");
+		requestTest.add(request);
 	}
-	
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
@@ -33,7 +37,8 @@ public class UserRegistrationRequestTest {
 	}
 
 	@Test(expected = InvalidAttributesException.class)
-	public void userRegistrationRequestIfNullMustReturnInvalidAttributesException() throws InvalidAttributesException {
+	public void userRegistrationRequestIfAnyAttributeIsNullMustReturnInvalidAttributesException()
+			throws InvalidAttributesException {
 		requestTest.get(0).createUser();
 		fail("Must return InvalidAttributesException!");
 	}

@@ -1,4 +1,4 @@
-package iit.uni.miskolc.user.exception;
+package iit.uni.miskolc.exception.handling;
 
 public class BusinessMessageAwareException extends Exception {
 	/**

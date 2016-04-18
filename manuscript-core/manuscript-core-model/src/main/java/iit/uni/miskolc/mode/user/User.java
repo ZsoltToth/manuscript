@@ -1,7 +1,5 @@
 package iit.uni.miskolc.mode.user;
 
-import java.util.Date;
-
 import javax.naming.directory.InvalidAttributesException;
 
 import iit.uni.miskolc.validator.basic.Validator;
@@ -32,7 +30,6 @@ public class User extends Validator {
 
 	public User(String firstName, String lastName) throws InvalidAttributesException {
 		super();
-
 		if (isNull(firstName)) {
 			throw new InvalidAttributesException("Nem lehet null a firstname!");
 		} else {
