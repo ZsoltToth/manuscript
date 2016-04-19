@@ -1,4 +1,4 @@
-package iit.uni.miskolc.basic.response;
+package iit.uni.miskolc.controller.response;
 
 /**
  * Represent a simple message with a message type. 

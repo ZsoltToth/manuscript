@@ -1,4 +1,4 @@
-package iit.uni.miskolc.basic.response;
+package iit.uni.miskolc.controller.response;
 
 import java.util.List;
 

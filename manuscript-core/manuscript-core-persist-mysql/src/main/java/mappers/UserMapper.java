@@ -2,7 +2,7 @@ package mappers;
 
 import java.util.Collection;
 
-import iit.uni.miskolc.mode.user.User;
+import iit.uni.miskolc.model.user.User;
 
 /**
  * 
