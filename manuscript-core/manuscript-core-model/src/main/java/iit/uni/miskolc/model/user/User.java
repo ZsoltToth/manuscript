@@ -5,11 +5,10 @@ import java.util.Date;
 import java.util.List;
 
 import iit.uni.miskolc.exception.handling.BusinessMessageAwareException;
+import iit.uni.miskolc.exception.handling.Regexp;
 import iit.uni.miskolc.model.address.Address;
 
 /**
- * Define a new user in the system with ROLE_USER role. This user has
- * availability to modify own data only.
  * 
  * @author Balazs Kovacs
  *
@@ -27,6 +26,7 @@ public class User {
 	private String phoneNumber;
 	private Address address;
 	private List<Exception> exceptions;
+	Regexp regex;
 
 	public User() {
 
@@ -58,7 +58,19 @@ public class User {
 	}
 
 	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+		try {
+			if (firstName == null) {
+				throw new IllegalArgumentException("This field is required");
+			} else if (firstName.matches(regex.NAME_VALIDATION_REGEXP)) {
+				throw new IllegalArgumentException("Invalid name, please try again!");
+			}
+
+			this.firstName = firstName;
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+			exceptions.add(e);
+		}
+
 	}
 
 	public String getLastName() {
@@ -66,7 +78,18 @@ public class User {
 	}
 
 	public void setLastName(String lastName) {
-		this.lastName = lastName;
+		try {
+			if (lastName == null) {
+				throw new IllegalArgumentException("This field is required");
+			} else if (!lastName.matches(regex.NAME_VALIDATION_REGEXP)) {
+				throw new IllegalArgumentException("Invalid name, please try again!");
+			}
+
+			this.lastName = lastName;
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+			exceptions.add(e);
+		}
 	}
 
 	public String getUserName() {
@@ -74,7 +97,18 @@ public class User {
 	}
 
 	public void setUserName(String userName) {
-		this.userName = userName;
+		try {
+			if (userName == null) {
+				throw new IllegalArgumentException("This field is required");
+			} else if (!lastName.matches(regex.USER_NAME_VALIDATION_REGEXP)) {
+				throw new IllegalArgumentException("Invalid name, please try again!");
+			}
+
+			this.userName = userName;
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+			exceptions.add(e);
+		}
 	}
 
 	public String getPassword() {
@@ -82,7 +116,18 @@ public class User {
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		try {
+			if (password == null) {
+				throw new IllegalArgumentException("This field is required");
+			} else if (!password.matches(regex.PASSWORD_REGEXP)) {
+				throw new IllegalArgumentException("Invalid password");
+			}
+			this.password = password;
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+			exceptions.add(e);
+		}
+
 	}
 
 	public Date getBirthDate() {
