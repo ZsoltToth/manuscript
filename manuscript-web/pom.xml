@@ -18,6 +18,7 @@
 		<foundation.webjar.version>6.2.0</foundation.webjar.version>
 		<velocity.version>1.7</velocity.version>
 		<velocity.tools.version>2.0</velocity.tools.version>
+		<mysql.connector.version>5.1.38</mysql.connector.version>
 	</properties>
 
 	<dependencies>
@@ -101,6 +102,13 @@
 			<artifactId>manuscript-core-service-impl</artifactId>
 			<version>${manuscript-core-service-impl.version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.connector.version}</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
