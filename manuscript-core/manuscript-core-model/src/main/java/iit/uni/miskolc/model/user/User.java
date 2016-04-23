@@ -61,7 +61,7 @@ public class User {
 		try {
 			if (firstName == null) {
 				throw new IllegalArgumentException("This field is required");
-			} else if (firstName.matches(regex.NAME_VALIDATION_REGEXP)) {
+			} else if (!firstName.matches(regex.NAME_VALIDATION_REGEXP)) {
 				throw new IllegalArgumentException("Invalid name, please try again!");
 			}
 
@@ -135,7 +135,18 @@ public class User {
 	}
 
 	public void setBirthDate(Date birthDate) {
-		this.birthDate = birthDate;
+		try {
+			if (birthDate == null) {
+				throw new IllegalArgumentException("This field is required");
+			} else if (birthDate.after(new Date())) {
+				throw new IllegalArgumentException("Date must be in the past");
+			}
+			this.birthDate = birthDate;
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+			exceptions.add(e);
+		}
+
 	}
 
 	public String getPersonalDescription() {
@@ -143,7 +154,18 @@ public class User {
 	}
 
 	public void setPersonalDescription(String personalDescription) {
-		this.personalDescription = personalDescription;
+		try {
+			if (personalDescription == null) {
+				this.personalDescription = personalDescription;
+			} else if (personalDescription.length() > 250) {
+				throw new IllegalArgumentException("Discription is too long");
+			}
+			this.personalDescription = personalDescription;
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+			exceptions.add(e);
+		}
+
 	}
 
 	public Date getRegistrationDate() {
@@ -185,47 +207,5 @@ public class User {
 	public void setExceptions(List<Exception> exceptions) {
 		this.exceptions = exceptions;
 	}
-
-	// public User(String firstName, String lastName) throws
-	// BusinessMessageAwareException {
-	// super();
-	// exceptions = new ArrayList<Exception>();
-	// setFirstName(firstName);
-	// setLastName(lastName);
-	// if (!exceptions.isEmpty()) {
-	// throw new BusinessMessageAwareException(exceptions);
-	// }
-	//
-	// }
-	//
-	// public String getFirstName() {
-	// return firstName;
-	// }
-	//
-	// public void setFirstName(String firstName) {
-	// // try {
-	// // throw new IllegalArgumentException("excepton 1");
-	// // } catch (IllegalArgumentException e) {
-	// // e.printStackTrace();
-	// // exceptions.add(e);
-	// // }
-	// // exceptions.add(new IllegalArgumentException("excepton 1"));
-	// // this.firstName = firstName;
-	// }
-	//
-	// public String getLastName() {
-	// return lastName;
-	// }
-	//
-	// public void setLastName(String lastName) {
-	// // exceptions.add(new IllegalArgumentException("excepton 2"));
-	// try {
-	// throw new IllegalArgumentException("adadasd");
-	// } catch (IllegalArgumentException e) {
-	// e.printStackTrace();
-	// exceptions.add(e);
-	// }
-	// this.lastName = lastName;
-	// }
 
 }
