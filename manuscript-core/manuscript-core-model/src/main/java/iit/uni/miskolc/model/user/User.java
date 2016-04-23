@@ -100,7 +100,7 @@ public class User {
 		try {
 			if (userName == null) {
 				throw new IllegalArgumentException("This field is required");
-			} else if (!lastName.matches(regex.USER_NAME_VALIDATION_REGEXP)) {
+			} else if (!userName.matches(regex.USER_NAME_VALIDATION_REGEXP)) {
 				throw new IllegalArgumentException("Invalid name, please try again!");
 			}
 

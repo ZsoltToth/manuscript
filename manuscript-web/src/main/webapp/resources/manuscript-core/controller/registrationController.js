@@ -6,11 +6,11 @@ angular.module('webApp')
 			lastName : "last name",
 			userName: "user name",
 			password: "password",
-//			birthDate: "",
-			personalDescription: "personalDescription",
-//			registrationDate: "",
-			email: "email@gmail.com",
-			phoneNumber: "+36305555555"
+			birthDate: "2017-05-12",
+//			personalDescription: "personalDescription",
+//			registrationDate: "20",
+//			email: "email@gmail.com",
+//			phoneNumber: "+36305555555"
 	}
     $scope.addNewUser = function(data, status, headers, config){
     	

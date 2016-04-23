@@ -20,9 +20,10 @@ import iit.uni.miskolc.model.user.User;
 @RequestMapping(value = "/registration")
 public class RegistrationController {
 	private final static Logger logger = Logger.getLogger(RegistrationController.class);
+	private UserRegistrationResponse response;
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	@ResponseBody
+	// @ResponseBody
 	public UserRegistrationResponse userRegistration(@RequestBody UserRegistrationRequest request)
 			throws BusinessMessageAwareException {
 		logger.info("User registration has invoked!");
@@ -30,16 +31,15 @@ public class RegistrationController {
 
 		return null;
 	}
-	
-	@ExceptionHandler(BusinessMessageAwareException.class)
-    public String handleMyAppTechnicalException(BusinessMessageAwareException e, Model model) {
-		List<Exception> exceptions = e.getException();
-		for (Exception exception : exceptions) {
-			logger.error(exception.getMessage());
-			exception.printStackTrace();
-		}
 
-        return null;
-    }
+	@ExceptionHandler(BusinessMessageAwareException.class)
+	@ResponseBody
+	public UserRegistrationResponse handleMyAppTechnicalException(BusinessMessageAwareException e, Model model) {
+		response = new UserRegistrationResponse();
+		response.setErrorMessages(e.getException());
+		logger.info("User registration return the following error messages: " + response.getErrorMessages());
+
+		return response;
+	}
 
 }

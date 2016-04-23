@@ -18,7 +18,7 @@ public class BusinessMessageAwareException extends Exception {
 	}
 
 	public List<Exception> getException() {
-		return exc;
+		return this.exc;
 	}
 
 	public BusinessMessageAwareException() {
