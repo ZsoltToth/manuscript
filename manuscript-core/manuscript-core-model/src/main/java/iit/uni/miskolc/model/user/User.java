@@ -181,7 +181,17 @@ public class User {
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+		try {
+			if (email == null) {
+				throw new IllegalArgumentException("This field is required");
+			} else if (!email.matches(regex.EMAIL_PATTERN)) {
+				throw new IllegalArgumentException("Invalid email, please try again!");
+			}
+			this.email = email;
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+			exceptions.add(e);
+		}
 	}
 
 	public String getPhoneNumber() {
