@@ -184,7 +184,7 @@ public class User {
 		try {
 			if (email == null) {
 				throw new IllegalArgumentException("This field is required");
-			} else if (!email.matches(regex.EMAIL_PATTERN)) {
+			} else if (!email.matches(regex.EMAIL_VALIDATION_REGEXP)) {
 				throw new IllegalArgumentException("Invalid email, please try again!");
 			}
 			this.email = email;
