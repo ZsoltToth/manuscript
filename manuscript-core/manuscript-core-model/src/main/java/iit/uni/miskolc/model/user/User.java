@@ -29,7 +29,7 @@ public class User {
 	Regexp regex;
 
 	public User() {
-
+		exceptions = new ArrayList<Exception>();
 	}
 
 	public User(String firstName, String lastName, String userName, String password, Date birthDate,
