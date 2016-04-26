@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import iit.uni.miskolc.exception.handling.BusinessMessageAwareException;
 import iit.uni.miskolc.exception.handling.Regexp;
 import iit.uni.miskolc.model.address.Address;
@@ -122,7 +124,12 @@ public class User {
 			} else if (!password.matches(regex.PASSWORD_REGEXP)) {
 				throw new IllegalArgumentException("Invalid password");
 			}
-			this.password = password;
+			
+			/*
+			 * Hashing algorithm
+			 */
+			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+			this.password = passwordEncoder.encode(password);
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
 			exceptions.add(e);
@@ -216,6 +223,14 @@ public class User {
 
 	public void setExceptions(List<Exception> exceptions) {
 		this.exceptions = exceptions;
+	}
+
+	@Override
+	public String toString() {
+		return "User [firstName=" + firstName + ", lastName=" + lastName + ", userName=" + userName + ", password="
+				+ password + ", birthDate=" + birthDate + ", personalDescription=" + personalDescription
+				+ ", registrationDate=" + registrationDate + ", email=" + email + ", phoneNumber=" + phoneNumber
+				+ ", address=" + address + ", exceptions=" + exceptions + "]";
 	}
 
 }

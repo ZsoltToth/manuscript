@@ -7,6 +7,7 @@ import iit.uni.miskolc.model.address.Address;
 import iit.uni.miskolc.model.user.User;
 
 public class UserRegistrationRequest {
+
 	private String firstName;
 	private String lastName;
 	private String userName;
@@ -92,5 +93,12 @@ public class UserRegistrationRequest {
 	public User createUser() throws BusinessMessageAwareException {
 		return new User(firstName, lastName, userName, password, birthDate, personalDescription, email, phoneNumber,
 				address);
+	}
+
+	@Override
+	public String toString() {
+		return "UserRegistrationRequest [firstName=" + firstName + ", lastName=" + lastName + ", userName=" + userName
+				+ ", password=" + password + ", birthDate=" + birthDate + ", personalDescription=" + personalDescription
+				+ ", email=" + email + ", phoneNumber=" + phoneNumber + ", address=" + address + "]";
 	}
 }

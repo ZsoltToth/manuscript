@@ -7,12 +7,13 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>manuscript-core-model</artifactId>
-	
+
 	<properties>
-	<manuscript.core.util.version>0.0.1-SNAPSHOT</manuscript.core.util.version>
-	<spring.version>4.2.5.RELEASE</spring.version>
+		<manuscript.core.util.version>0.0.1-SNAPSHOT</manuscript.core.util.version>
+		<spring.version>4.2.5.RELEASE</spring.version>
+		<spring.security.crypto.version>4.0.4.RELEASE</spring.security.crypto.version>
 	</properties>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>hu.iit.miskolc</groupId>
@@ -29,5 +30,12 @@
 			<artifactId>spring-context</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-crypto</artifactId>
+			<version>${spring.security.crypto.version}</version>
+		</dependency>
+
 	</dependencies>
 </project>
