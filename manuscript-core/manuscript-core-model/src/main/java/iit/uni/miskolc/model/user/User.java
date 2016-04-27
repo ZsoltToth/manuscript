@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import iit.uni.miskolc.exception.handling.BusinessMessageAwareException;
+import iit.uni.miskolc.exception.handling.UserValidationException;
 import iit.uni.miskolc.exception.handling.Regexp;
 import iit.uni.miskolc.model.address.Address;
 
@@ -27,31 +27,82 @@ public class User {
 	private String email;
 	private String phoneNumber;
 	private Address address;
-	private List<Exception> exceptions;
-	Regexp regex;
 
 	public User() {
-		exceptions = new ArrayList<Exception>();
 	}
 
 	public User(String firstName, String lastName, String userName, String password, Date birthDate,
 			String personalDescription, String email, String phoneNumber, Address address)
-			throws BusinessMessageAwareException {
+			throws UserValidationException {
 		super();
-		exceptions = new ArrayList<Exception>();
-		setFirstName(firstName);
-		setLastName(lastName);
-		setUserName(userName);
-		setPassword(password);
-		setBirthDate(birthDate);
-		setPersonalDescription(personalDescription);
-		setRegistrationDate(new Date());
-		setEmail(email);
-		setPhoneNumber(phoneNumber);
-		setAddress(address);
+
+		List<Exception> exceptions = new ArrayList<Exception>();
+
+		try {
+			setFirstName(firstName);
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+			exceptions.add(e);
+		}
+
+		try {
+			setLastName(lastName);
+		} catch (Exception e) {
+			e.printStackTrace();
+			exceptions.add(e);
+		}
+		try {
+			setUserName(userName);
+		} catch (Exception e) {
+			e.printStackTrace();
+			exceptions.add(e);
+		}
+		try {
+			setPassword(password);
+		} catch (Exception e) {
+			e.printStackTrace();
+			exceptions.add(e);
+		}
+		try {
+			setBirthDate(birthDate);
+		} catch (Exception e) {
+			e.printStackTrace();
+			exceptions.add(e);
+		}
+		try {
+			setPersonalDescription(personalDescription);
+		} catch (Exception e) {
+			e.printStackTrace();
+			exceptions.add(e);
+		}
+		try {
+			setRegistrationDate(new Date());
+		} catch (Exception e) {
+			e.printStackTrace();
+			exceptions.add(e);
+		}
+		try {
+			setEmail(email);
+		} catch (Exception e) {
+			e.printStackTrace();
+			exceptions.add(e);
+		}
+
+		try {
+			setPhoneNumber(phoneNumber);
+		} catch (Exception e) {
+			e.printStackTrace();
+			exceptions.add(e);
+		}
+		try {
+			setAddress(address);
+		} catch (Exception e) {
+			e.printStackTrace();
+			exceptions.add(e);
+		}
 
 		if (!exceptions.isEmpty()) {
-			throw new BusinessMessageAwareException(exceptions);
+			throw new UserValidationException(exceptions);
 		}
 	}
 
@@ -60,18 +111,8 @@ public class User {
 	}
 
 	public void setFirstName(String firstName) {
-		try {
-			if (firstName == null) {
-				throw new IllegalArgumentException("This field is required");
-			} else if (!firstName.matches(regex.NAME_VALIDATION_REGEXP)) {
-				throw new IllegalArgumentException("Invalid name, please try again!");
-			}
-
-			this.firstName = firstName;
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-			exceptions.add(e);
-		}
+		nameValidation(firstName);
+		this.firstName = firstName;
 
 	}
 
@@ -80,18 +121,9 @@ public class User {
 	}
 
 	public void setLastName(String lastName) {
-		try {
-			if (lastName == null) {
-				throw new IllegalArgumentException("This field is required");
-			} else if (!lastName.matches(regex.NAME_VALIDATION_REGEXP)) {
-				throw new IllegalArgumentException("Invalid name, please try again!");
-			}
+		nameValidation(lastName);
+		this.lastName = lastName;
 
-			this.lastName = lastName;
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-			exceptions.add(e);
-		}
 	}
 
 	public String getUserName() {
@@ -99,18 +131,9 @@ public class User {
 	}
 
 	public void setUserName(String userName) {
-		try {
-			if (userName == null) {
-				throw new IllegalArgumentException("This field is required");
-			} else if (!userName.matches(regex.USER_NAME_VALIDATION_REGEXP)) {
-				throw new IllegalArgumentException("Invalid name, please try again!");
-			}
+		nameValidation(userName);
+		this.userName = userName;
 
-			this.userName = userName;
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-			exceptions.add(e);
-		}
 	}
 
 	public String getPassword() {
@@ -118,22 +141,14 @@ public class User {
 	}
 
 	public void setPassword(String password) {
-		try {
-			if (password == null) {
-				throw new IllegalArgumentException("This field is required");
-			} else if (!password.matches(regex.PASSWORD_REGEXP)) {
-				throw new IllegalArgumentException("Invalid password");
-			}
-			
-			/*
-			 * Hashing algorithm
-			 */
-			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-			this.password = passwordEncoder.encode(password);
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-			exceptions.add(e);
+
+		if (password == null) {
+			throw new IllegalArgumentException("This field is required");
+		} else if (!password.matches(Regexp.PASSWORD_REGEXP)) {
+			throw new IllegalArgumentException("Invalid password");
 		}
+
+		this.password = passwordEncoder(password);
 
 	}
 
@@ -142,18 +157,12 @@ public class User {
 	}
 
 	public void setBirthDate(Date birthDate) {
-		try {
-			if (birthDate == null) {
-				throw new IllegalArgumentException("This field is required");
-			} else if (birthDate.after(new Date())) {
-				throw new IllegalArgumentException("Date must be in the past");
-			}
-			this.birthDate = birthDate;
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-			exceptions.add(e);
+		if (birthDate == null) {
+			throw new IllegalArgumentException("This field is required");
+		} else if (birthDate.after(new Date())) {
+			throw new IllegalArgumentException("Date must be in the past");
 		}
-
+		this.birthDate = birthDate;
 	}
 
 	public String getPersonalDescription() {
@@ -161,18 +170,12 @@ public class User {
 	}
 
 	public void setPersonalDescription(String personalDescription) {
-		try {
-			if (personalDescription == null) {
-				this.personalDescription = personalDescription;
-			} else if (personalDescription.length() > 250) {
-				throw new IllegalArgumentException("Discription is too long");
-			}
+		if (personalDescription == null) {
 			this.personalDescription = personalDescription;
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-			exceptions.add(e);
+		} else if (personalDescription.length() > 250) {
+			throw new IllegalArgumentException("Discription is too long");
 		}
-
+		this.personalDescription = personalDescription;
 	}
 
 	public Date getRegistrationDate() {
@@ -188,17 +191,12 @@ public class User {
 	}
 
 	public void setEmail(String email) {
-		try {
-			if (email == null) {
-				throw new IllegalArgumentException("This field is required");
-			} else if (!email.matches(regex.EMAIL_VALIDATION_REGEXP)) {
-				throw new IllegalArgumentException("Invalid email, please try again!");
-			}
-			this.email = email;
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-			exceptions.add(e);
+		if (email == null) {
+			throw new IllegalArgumentException("This field is required");
+		} else if (!email.matches(Regexp.EMAIL_VALIDATION_REGEXP)) {
+			throw new IllegalArgumentException("Invalid email, please try again!");
 		}
+		this.email = email;
 	}
 
 	public String getPhoneNumber() {
@@ -217,12 +215,17 @@ public class User {
 		this.address = address;
 	}
 
-	public List<Exception> getExceptions() {
-		return exceptions;
+	private void nameValidation(String name) {
+		if (name == null) {
+			throw new IllegalArgumentException("This field is required");
+		} else if (!name.matches(Regexp.USER_NAME_VALIDATION_REGEXP)) {
+			throw new IllegalArgumentException("Invalid name, please try again!");
+		}
 	}
 
-	public void setExceptions(List<Exception> exceptions) {
-		this.exceptions = exceptions;
+	private String passwordEncoder(String password) {
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		return passwordEncoder.encode(password);
 	}
 
 	@Override
@@ -230,7 +233,7 @@ public class User {
 		return "User [firstName=" + firstName + ", lastName=" + lastName + ", userName=" + userName + ", password="
 				+ password + ", birthDate=" + birthDate + ", personalDescription=" + personalDescription
 				+ ", registrationDate=" + registrationDate + ", email=" + email + ", phoneNumber=" + phoneNumber
-				+ ", address=" + address + ", exceptions=" + exceptions + "]";
+				+ ", address=" + address + "]";
 	}
 
 }

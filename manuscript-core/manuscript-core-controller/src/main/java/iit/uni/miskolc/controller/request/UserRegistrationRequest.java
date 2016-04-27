@@ -2,7 +2,7 @@ package iit.uni.miskolc.controller.request;
 
 import java.util.Date;
 
-import iit.uni.miskolc.exception.handling.BusinessMessageAwareException;
+import iit.uni.miskolc.exception.handling.UserValidationException;
 import iit.uni.miskolc.model.address.Address;
 import iit.uni.miskolc.model.user.User;
 
@@ -90,7 +90,7 @@ public class UserRegistrationRequest {
 		this.address = address;
 	}
 
-	public User createUser() throws BusinessMessageAwareException {
+	public User createUser() throws UserValidationException {
 		return new User(firstName, lastName, userName, password, birthDate, personalDescription, email, phoneNumber,
 				address);
 	}

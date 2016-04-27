@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import iit.uni.miskolc.controller.request.UserRegistrationRequest;
 import iit.uni.miskolc.controller.response.UserRegistrationResponse;
-import iit.uni.miskolc.exception.handling.BusinessMessageAwareException;
+import iit.uni.miskolc.exception.handling.UserValidationException;
 import iit.uni.miskolc.user.registration.UserRegistrationService;
 
 @Controller
@@ -29,7 +29,7 @@ public class RegistrationController {
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	@ResponseBody
 	public UserRegistrationResponse userRegistration(@RequestBody UserRegistrationRequest request)
-			throws BusinessMessageAwareException {
+			throws UserValidationException {
 		logger.info("User register : " + request.toString());
 		// User user = request.createUser();
 		registration.createUser(request.createUser());
@@ -38,9 +38,9 @@ public class RegistrationController {
 												// finish
 	}
 
-	@ExceptionHandler(BusinessMessageAwareException.class)
+	@ExceptionHandler(UserValidationException.class)
 	@ResponseBody
-	public UserRegistrationResponse handleMyAppTechnicalException(BusinessMessageAwareException e, Model model) {
+	public UserRegistrationResponse handleMyAppTechnicalException(UserValidationException e, Model model) {
 		response = new UserRegistrationResponse();
 		response.setErrorMessages(e.getException());
 		logger.info("User registration return the following error messages: " + response.getErrorMessages());

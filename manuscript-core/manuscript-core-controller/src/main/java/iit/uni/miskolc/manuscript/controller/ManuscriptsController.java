@@ -1,4 +1,4 @@
-package iit.uni.miskolc.controller.test;
+package iit.uni.miskolc.manuscript.controller;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;

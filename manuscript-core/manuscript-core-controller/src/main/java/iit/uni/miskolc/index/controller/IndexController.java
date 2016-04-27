@@ -1,12 +1,12 @@
-package iit.uni.miskolc.controller.test;
+package iit.uni.miskolc.index.controller;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class MainController {
-	private final static Logger logger = Logger.getLogger(MainController.class);
+public class IndexController {
+	private final static Logger logger = Logger.getLogger(IndexController.class);
 
 	@RequestMapping("/index")
 	public String index() {
