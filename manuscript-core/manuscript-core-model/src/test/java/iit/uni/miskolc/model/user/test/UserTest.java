@@ -27,5 +27,133 @@ public class UserTest {
 		user = new User();
 		user.setFirstName("first name");
 	}
+	
+		
+	@Test
+	public void initUserWithValidDatas() throws UserValidationException{
+		SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = null;
+		try {
+			date = fmt.parse("2001-05-06");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		user = new User("Kiss","Pista","Pista12","ASDqweRT34!",date,"description","email@gmail.hu","36307896783",new Address());
+	}
+
+	@Test (expected = UserValidationException.class)
+	public void initUserWithWrongFirstNameThrowsUserValidationException () throws UserValidationException{
+		SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = null;
+		try {
+			date = fmt.parse("2001-05-06");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		user = new User("wong name","Pista","Pista12","ASDqweRT34!",date,"description","email@gmail.hu","36307896783",new Address());
+	}
+	
+	@Test (expected = UserValidationException.class)
+	public void initUserWithWrongLastNameThrowsUserValidationException () throws UserValidationException{
+		SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = null;
+		try {
+			date = fmt.parse("2001-05-06");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		user = new User("Kiss","wrong name","Pista12","ASDqweRT34!",date,"description","email@gmail.hu","36307896783",new Address());
+	}
+
+	
+	@Test (expected = UserValidationException.class)
+	public void initUserWithWrongUserNameThrowsUserValidationException () throws UserValidationException{
+		SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = null;
+		try {
+			date = fmt.parse("2001-05-06");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		user = new User("Kiss","Pista","wrong name","ASDqweRT34!",date,"description","email@gmail.hu","36307896783",new Address());
+	}
+	
+	@Test (expected = UserValidationException.class)
+	public void initUserWithPasswordThrowsUserValidationException () throws UserValidationException{
+		SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = null;
+		try {
+			date = fmt.parse("2001-05-06");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		user = new User("Kiss","Pista","wrong name","ASDqweRT34",date,"description","email@gmail.hu","36307896783",new Address());
+	}
+
+	
+	@Test (expected = UserValidationException.class)
+	public void initUserWithWrongDateThrowsUserValidationException () throws UserValidationException{
+		SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = null;
+		try {
+			date = fmt.parse("2023-05-06");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		user = new User("Kiss","Pista","Pista12","ASDqweRT34!",date,"description","email@gmail.hu","36307896783",new Address());
+	}
+	
+	@Test (expected = UserValidationException.class)
+	public void initUserWithWrongDescriptionThrowsUserValidationException () throws UserValidationException{
+		SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = null;
+		try {
+			date = fmt.parse("2001-05-06");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		String longDescription = "";
+		for(int i=0; i<251; i++){
+			longDescription += "a";
+		}
+		user = new User("Kiss","Pista","Pista12","ASDqweRT34!",date,longDescription,"email@gmail.hu","36307896783",new Address());
+	}
+	
+	
+	@Test (expected = UserValidationException.class)
+	public void initUserWithNullFirstNameThrowsUserValidationException () throws UserValidationException{
+		SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = null;
+		try {
+			date = fmt.parse("2001-05-06");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		user = new User(null,"Pista","Pista12","ASDqweRT34!",date,"description","email@gmail.hu","36307896783",new Address());
+	}
+
+	@Test (expected = UserValidationException.class)
+	public void initUserWithNullLastNameThrowsUserValidationException () throws UserValidationException{
+		SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = null;
+		try {
+			date = fmt.parse("2001-05-06");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		user = new User("Kiss",null,"Pista12","ASDqweRT34!",date,"description","email@gmail.hu","36307896783",new Address());
+	}
+	
+	@Test (expected = UserValidationException.class)
+	public void initUserWithWrongEmailThrowsUserValidationException () throws UserValidationException{
+		SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = null;
+		try {
+			date = fmt.parse("2001-05-06");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		user = new User("Kiss","Pista","Pista12","ASDqweRT34!",date,"description","emailgmail.hu","36307896783",new Address());
+	}
 
 }
