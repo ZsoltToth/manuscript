@@ -2,10 +2,15 @@ package iit.uni.miskolc.model.user.test;
 
 import static org.junit.Assert.fail;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import iit.uni.miskolc.exception.handling.UserValidationException;
+import iit.uni.miskolc.model.address.Address;
 import iit.uni.miskolc.model.user.User;
 
 public class UserTest {
