@@ -28,7 +28,7 @@ public class UserRegistrationRequestTest {
 		request.setPersonalDescription("Description");
 		request.setEmail("email@email.hu");
 		request.setPhoneNumber("+3630/4545678");
-		Address address = new Address();
+		Address address = new Address("street", "city", "1355", "country");
 		request.setAddress(address);
 	}
 	
