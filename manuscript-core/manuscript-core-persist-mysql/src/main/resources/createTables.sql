@@ -1,29 +1,36 @@
-create table if not exists user(
-	id varchar(10) primary key,
-	first_name varchar(20),
-	last_name varchar(20),
-	user_name varchar(30),
-	password varchar(150),
-	birth_date date,
-	personal_description varchar(255),
-	role varchar(10),
+CREATE  TABLE users (
+	username VARCHAR(45) NOT NULL ,
+	password VARCHAR(150) NOT NULL ,
+	enabled TINYINT NOT NULL DEFAULT 1 ,
+	PRIMARY KEY (username)
+);
+
+CREATE TABLE user_roles (
+	user_role_id int(11) NOT NULL AUTO_INCREMENT,
+	username varchar(45) NOT NULL,
+	role varchar(45) NOT NULL,
+	PRIMARY KEY (user_role_id),
+	UNIQUE KEY uni_username_role (role,username),
+	KEY fk_username_idx (username),
+	CONSTRAINT fk_username FOREIGN KEY (username) REFERENCES users (username)
+);
+
+CREATE TABLE user_datas(
+	id int(11) PRIMARY KEY,
+	username VARCHAR(45) references users.id,
+	firstname VARCHAR(30),
+	lastname VARCHAR(30),
+	birthdate date,
+	personal_description VARCHAR(250),
 	registration_date date,
-	user_accessibility_id varchar(10),
-	foreign key user_accessibility_id references user_accessibility(id)
+	email VARCHAR(30),
+	address_id int(11) references user_address.id
 );
 
-create table if not exists user_accessibility(
-	id varchar(10) primary key,
-	email varchar(50),
-	pistal_adress_id varchar(10),
-	foreign key postal_adress_id references postal_adress(id)
+CREATE TABLE user_address(
+	id int(11) primary key,
+	street VARCHAR(45),
+	city VARCHAR(45),
+	postcode int(11),
+	country VARCHAR(20)
 );
-
-create table if not exists postal_adress(
-	id varchar(10),
-	adress varchar(50),
-	city varchar(30),
-	post_code int(5),
-	country varchar(30)
-);
-
