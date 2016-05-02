@@ -204,6 +204,11 @@ public class User {
 	}
 
 	public void setPhoneNumber(String phoneNumber) {
+		if (phoneNumber == null) {
+			throw new IllegalArgumentException("This field is required");
+		}else if (!phoneNumber.matches(Regexp.PHONE_NUMBER_VALIDATION_REGEXP)) {
+			throw new IllegalArgumentException("Invalid phone number, please try again! The acceptable phone number is the following: +36-30/1234567, +3630/1234567, +36-30/1234567");
+		}
 		this.phoneNumber = phoneNumber;
 	}
 
