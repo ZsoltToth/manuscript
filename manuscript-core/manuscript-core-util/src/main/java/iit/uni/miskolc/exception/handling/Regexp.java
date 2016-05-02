@@ -11,10 +11,16 @@ public class Regexp {
 	public static final String USER_NAME_VALIDATION_REGEXP = "[a-zA-Z\\d]{1,20}";
 	
 	/**
-	 * acceptable phone numbers:
-	 * +36-30/1234567, +3630/1234567, +36-30/1234567
+	 * acceptable phone numbers: +36-30/1234567, +3630/1234567, +36-30/1234567
 	 */
 	public static final String PHONE_NUMBER_VALIDATION_REGEXP = "^\\+[0-9]{2}[ -]?[0-9]{2}/[0-9]{7}$";
+	
+	/**
+	 * Acceptable postal code: 1123. 
+	 * 0123 is unacceptable.
+	 */
+	public static final String POSTAL_CODE_VALIDATION_REGEXP = "^[1-9]{1}[0-9]{3}$";
+	
 	/**
 	 * Minimum 8 characters at least 1 Uppercase Alphabet, 1 Lowercase Alphabet, 1 Number and 1 Special Character:
 	 */

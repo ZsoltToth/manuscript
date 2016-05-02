@@ -2,15 +2,20 @@ angular.module('webApp')
 .controller('registrationController', ['$scope', '$http', function($scope, $http){
 	$scope.error = "";
 	$scope.user = {
-			firstName : "firstname",
+			firstName : "firs  tname",
 			lastName : "lastname",
 			userName: "username",
 			password: "Passwo123!rd",
 			birthDate: "2013-05-12",
 			personalDescription: "personalDescription",
-//			registrationDate: "20",
 			email: "email@gmail.com",
-//			phoneNumber: "+36305555555"
+			phoneNumber: "+3630/1234567",
+			address: {
+				street: "street",
+//				city: "city",
+				postalCode: "1234",
+				country: "country"
+			}
 	}
     $scope.addNewUser = function(data, status, headers, config){
     	

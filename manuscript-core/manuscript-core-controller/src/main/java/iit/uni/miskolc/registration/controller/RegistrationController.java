@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +29,7 @@ public class RegistrationController {
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	@ResponseBody
-	public UserRegistrationResponse userRegistration(@RequestBody UserRegistrationRequest request)
+	public UserRegistrationResponse userRegistration(@RequestBody @Validated UserRegistrationRequest request)
 			throws UserValidationException {
 		logger.info("User register : " + request.toString());
 		// User user = request.createUser();

@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import iit.uni.miskolc.exception.handling.UserValidationException;
+import iit.uni.miskolc.exception.handling.AddressValidationException;
 import iit.uni.miskolc.exception.handling.Regexp;
 import iit.uni.miskolc.model.address.Address;
 
@@ -96,9 +97,11 @@ public class User {
 		}
 		try {
 			setAddress(address);
-		} catch (Exception e) {
-			e.printStackTrace();
-			exceptions.add(e);
+		} catch (AddressValidationException e) {
+			for (Exception exception : e.getException()) {
+				exceptions.add(exception);
+			}
+			
 		}
 
 		if (!exceptions.isEmpty()) {
@@ -206,9 +209,11 @@ public class User {
 	public void setPhoneNumber(String phoneNumber) {
 		if (phoneNumber == null) {
 			throw new IllegalArgumentException("This field is required");
-		}else if (!phoneNumber.matches(Regexp.PHONE_NUMBER_VALIDATION_REGEXP)) {
-			throw new IllegalArgumentException("Invalid phone number, please try again! The acceptable phone number is the following: +36-30/1234567, +3630/1234567, +36-30/1234567");
+		} else if (!phoneNumber.matches(Regexp.PHONE_NUMBER_VALIDATION_REGEXP)) {
+			throw new IllegalArgumentException(
+					"Invalid phone number, please try again! The acceptable phone number is the following: +36-30/1234567, +3630/1234567, +36-30/1234567");
 		}
+
 		this.phoneNumber = phoneNumber;
 	}
 
@@ -216,8 +221,10 @@ public class User {
 		return address;
 	}
 
-	public void setAddress(Address address) {
-		this.address = address;
+	public void setAddress(Address address) throws UserValidationException, AddressValidationException {
+		this.address = new Address(address.getStreet(), address.getCity(), address.getPostaCode(),
+				address.getCountry());
+		;
 	}
 
 	private void nameValidation(String name) {

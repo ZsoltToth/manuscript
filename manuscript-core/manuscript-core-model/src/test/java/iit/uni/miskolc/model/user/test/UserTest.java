@@ -43,7 +43,7 @@ public class UserTest {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		user = new User("Kiss","Pista","Pista12","ASDqweRT34!",date,"description","email@gmail.hu","36307896783",new Address());
+		user = new User("Kiss","Pista","Pista12","ASDqweRT34!",date,"description","email@gmail.hu","+3630/7896783",new Address());
 	}
 
 	@Test (expected = UserValidationException.class)
@@ -55,7 +55,7 @@ public class UserTest {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		user = new User("wong name","Pista","Pista12","ASDqweRT34!",date,"description","email@gmail.hu","36307896783",new Address());
+		user = new User("wong name","Pista","Pista12","ASDqweRT34!",date,"description","email@gmail.hu","+3630/7896783",new Address());
 	}
 	
 	@Test (expected = UserValidationException.class)
@@ -67,7 +67,7 @@ public class UserTest {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		user = new User("Kiss","wrong name","Pista12","ASDqweRT34!",date,"description","email@gmail.hu","36307896783",new Address());
+		user = new User("Kiss","wrong name","Pista12","ASDqweRT34!",date,"description","email@gmail.hu","+3630/7896783",new Address());
 	}
 
 	
@@ -80,7 +80,7 @@ public class UserTest {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		user = new User("Kiss","Pista","wrong name","ASDqweRT34!",date,"description","email@gmail.hu","36307896783",new Address());
+		user = new User("Kiss","Pista","wrong name","ASDqweRT34!",date,"description","email@gmail.hu","+3630/7896783",new Address());
 	}
 	
 	@Test (expected = UserValidationException.class)
@@ -92,7 +92,7 @@ public class UserTest {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		user = new User("Kiss","Pista","wrong name","ASDqweRT34",date,"description","email@gmail.hu","36307896783",new Address());
+		user = new User("Kiss","Pista","wrong name","ASDqweRT34",date,"description","email@gmail.hu","+3630/7896783",new Address());
 	}
 
 	
@@ -105,7 +105,7 @@ public class UserTest {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		user = new User("Kiss","Pista","Pista12","ASDqweRT34!",date,"description","email@gmail.hu","36307896783",new Address());
+		user = new User("Kiss","Pista","Pista12","ASDqweRT34!",date,"description","email@gmail.hu","+3630/7896783",new Address());
 	}
 	
 	@Test (expected = UserValidationException.class)
@@ -121,7 +121,7 @@ public class UserTest {
 		for(int i=0; i<251; i++){
 			longDescription += "a";
 		}
-		user = new User("Kiss","Pista","Pista12","ASDqweRT34!",date,longDescription,"email@gmail.hu","36307896783",new Address());
+		user = new User("Kiss","Pista","Pista12","ASDqweRT34!",date,longDescription,"email@gmail.hu","+3630/7896783",new Address());
 	}
 	
 	
@@ -134,7 +134,7 @@ public class UserTest {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		user = new User(null,"Pista","Pista12","ASDqweRT34!",date,"description","email@gmail.hu","36307896783",new Address());
+		user = new User(null,"Pista","Pista12","ASDqweRT34!",date,"description","email@gmail.hu","+3630/7896783",new Address());
 	}
 
 	@Test (expected = UserValidationException.class)
@@ -146,7 +146,7 @@ public class UserTest {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		user = new User("Kiss",null,"Pista12","ASDqweRT34!",date,"description","email@gmail.hu","36307896783",new Address());
+		user = new User("Kiss",null,"Pista12","ASDqweRT34!",date,"description","email@gmail.hu","+3630/7896783",new Address());
 	}
 	
 	@Test (expected = UserValidationException.class)
@@ -158,7 +158,7 @@ public class UserTest {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		user = new User("Kiss","Pista","Pista12","ASDqweRT34!",date,"description","emailgmail.hu","36307896783",new Address());
+		user = new User("Kiss","Pista","Pista12","ASDqweRT34!",date,"description","emailgmail.hu","+3630/7896783",new Address());
 	}
 
 }
