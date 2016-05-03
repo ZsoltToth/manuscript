@@ -24,6 +24,7 @@ CREATE TABLE user_datas(
 	personal_description VARCHAR(250),
 	registration_date date,
 	email VARCHAR(30),
+	phone_number VARCHAR(20),
 	address_id int(11) references user_address.id
 );
 
