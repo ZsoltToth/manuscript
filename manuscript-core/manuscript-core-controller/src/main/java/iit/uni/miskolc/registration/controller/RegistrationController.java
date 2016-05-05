@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import iit.uni.miskolc.controller.request.UserRegistrationRequest;
 import iit.uni.miskolc.controller.response.UserRegistrationResponse;
 import iit.uni.miskolc.exception.handling.UserValidationException;
-import iit.uni.miskolc.user.registration.UserRegistrationService;
+import iit.uni.miskolc.user.registration.service.UserRegistrationService;
 
 @Controller
 @RequestMapping(value = "/registration")

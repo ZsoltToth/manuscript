@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import iit.uni.miskolc.model.user.User;
+import iit.uni.miskolc.user.registration.service.UserRegistrationService;
 
 @Service
 public class UserRegistrationServiceImpl implements UserRegistrationService {

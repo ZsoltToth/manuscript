@@ -1,4 +1,4 @@
 angular.module('webApp')
 .controller('indexController', ['$scope', function($scope){
-	$scope.text = 'index';
+//	$scope.text = 'index';
 }])
