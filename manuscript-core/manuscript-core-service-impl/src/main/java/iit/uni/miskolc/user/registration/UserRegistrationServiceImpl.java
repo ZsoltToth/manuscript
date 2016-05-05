@@ -1,6 +1,7 @@
 package iit.uni.miskolc.user.registration;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import iit.uni.miskolc.model.user.User;
@@ -10,6 +11,9 @@ import iit.uni.miskolc.user.registration.service.UserRegistrationService;
 public class UserRegistrationServiceImpl implements UserRegistrationService {
 
 	private final static Logger logger = Logger.getLogger(UserRegistrationServiceImpl.class);
+	
+//	@Autowired
+//	private UserRegistrationService service;
 
 	@Override
 	public void createUser(User user) {
