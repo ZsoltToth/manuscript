@@ -12,21 +12,21 @@ public interface UserManagementDao {
 
 	/**
 	 * Get back a list that contains all users.
-	 * @return list of users
+	 * @return the list of the users
 	 */
 	public List<User> getAllUser();
 	
 	/**
 	 * Get back a user by the user name.
 	 * @param name of the user 
-	 * @return user
+	 * @return the searched user
 	 */
 	public User getUserByUserName(String userName);
 	
 	/**
 	 * Get back a user by the id
 	 * @param id of the user
-	 * @return user
+	 * @return the searched user
 	 */
 	public User getUserById(Integer id);
 	
@@ -38,15 +38,21 @@ public interface UserManagementDao {
 	
 	/**
 	 * Update the role of the user.
-	 * @param id of the user
-	 * @param role
+	 * @param userName of the user
+	 * @param role of the user
 	 */
-	public void setRoleById(Integer id, String role);
+	public void setRoleById(String userName, String role);
 	
 	/**
 	 * Get back the role of the user.
 	 * @param id of the user
-	 * @return
+	 * @return the role of the user
 	 */
 	public String getUserRoleBy(Integer id);
+	
+	/**
+	 * update the user's data
+	 * @param user
+	 */
+	public void updateUser(User user);
 }
