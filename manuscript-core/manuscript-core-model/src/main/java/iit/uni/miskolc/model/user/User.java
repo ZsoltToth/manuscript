@@ -174,7 +174,7 @@ public class User {
 
 	public void setPersonalDescription(String personalDescription) {
 		if (personalDescription == null) {
-			this.personalDescription = personalDescription;
+			throw new IllegalArgumentException("This field is required");
 		} else if (personalDescription.length() > 250) {
 			throw new IllegalArgumentException("Discription is too long");
 		}
