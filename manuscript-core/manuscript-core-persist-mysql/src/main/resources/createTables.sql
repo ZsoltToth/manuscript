@@ -10,14 +10,16 @@ CREATE TABLE user_roles (
 	username varchar(45) NOT NULL,
 	role varchar(45) NOT NULL,
 	PRIMARY KEY (user_role_id),
-	UNIQUE KEY uni_username_role (role,username),
-	KEY fk_username_idx (username),
-	CONSTRAINT fk_username FOREIGN KEY (username) REFERENCES users (username)
+	UNIQUE KEY uni_username_role (role,username),       
+	INDEX usr_ind (username),
+    	FOREIGN KEY (username)
+	REFERENCES users(username)
+        	ON DELETE CASCADE
 );
 
 CREATE TABLE user_datas(
-	id int(11) PRIMARY KEY,
-	username VARCHAR(45) references users.id,
+	id int(11) PRIMARY KEY AUTO_INCREMENT,
+	username VARCHAR(45),
 	firstname VARCHAR(30),
 	lastname VARCHAR(30),
 	birthdate date,
@@ -25,13 +27,12 @@ CREATE TABLE user_datas(
 	registration_date date,
 	email VARCHAR(30),
 	phone_number VARCHAR(20),
-	address_id int(11) references user_address.id
-);
-
-CREATE TABLE user_address(
-	id int(11) primary key,
 	street VARCHAR(45),
 	city VARCHAR(45),
 	postcode int(11),
-	country VARCHAR(20)
+	country VARCHAR(20),
+    	INDEX usrdts_ind (username),
+    	FOREIGN KEY (username) 
+        REFERENCES users(username)
+        	ON DELETE CASCADE
 );
