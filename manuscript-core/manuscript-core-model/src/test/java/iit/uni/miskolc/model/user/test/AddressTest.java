@@ -14,10 +14,10 @@ public class AddressTest{
 	@Before
 	public void setUp(){
 		address = new Address();
-		address.setStreet("Egyetem Ăşt");
+		address.setStreet("Egyetem út");
 		address.setCity("Miskolc");
 		address.setPostaCode("3525");
-		address.setCountry("MagyarorszĂˇg");
+		address.setCountry("Magyarország");
 	}
 	
 	@Ignore		//@Test (expected = IllegalArgumentException.class)
@@ -61,12 +61,12 @@ public class AddressTest{
 	
 	@Test
 	public void testConstructor() throws UserValidationException, AddressValidationException{
-		address = new Address("Egyetem Ăşt","Miskolc","3525","MagyarorszĂˇg");
+		address = new Address("Egyetem út","Miskolc","3525","Magyarország");
 	}
 	
 	@Test (expected = AddressValidationException.class)
 	public void testConstructorWithNullStreet() throws UserValidationException, AddressValidationException{
-		address = new Address(null,"Miskolc","3525","MagyarorszĂˇg");
+		address = new Address(null,"Miskolc","3525","Magyarország");
 	}
 	
 	@Test (expected = Exception.class)
