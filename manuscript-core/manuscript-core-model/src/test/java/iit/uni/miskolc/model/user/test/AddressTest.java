@@ -14,10 +14,10 @@ public class AddressTest{
 	@Before
 	public void setUp(){
 		address = new Address();
-		address.setStreet("Egyetem út");
+		address.setStreet("Egyetem Ăşt");
 		address.setCity("Miskolc");
 		address.setPostaCode("3525");
-		address.setCountry("Magyarország");
+		address.setCountry("MagyarorszĂˇg");
 	}
 	
 	@Ignore		//@Test (expected = IllegalArgumentException.class)
@@ -61,11 +61,26 @@ public class AddressTest{
 	
 	@Test
 	public void testConstructor() throws UserValidationException, AddressValidationException{
-		address = new Address("Egyetem út","Miskolc","3525","Magyarország");
+		address = new Address("Egyetem Ăşt","Miskolc","3525","MagyarorszĂˇg");
 	}
 	
 	@Test (expected = AddressValidationException.class)
-	public void testWrongConstructor() throws UserValidationException, AddressValidationException{
-		address = new Address(null,"Miskolc","3525","Magyarország");
+	public void testConstructorWithNullStreet() throws UserValidationException, AddressValidationException{
+		address = new Address(null,"Miskolc","3525","MagyarorszĂˇg");
+	}
+	
+	@Test (expected = Exception.class)
+	public void testConstructorWithNullCity() throws UserValidationException, AddressValidationException{
+		address = new Address("Egyetem út",null,"3525","Magyarország");
+	}
+	
+	@Test (expected = Exception.class)
+	public void testConstructorWithNullPostcode() throws UserValidationException, AddressValidationException{
+		address = new Address("Egyetem út","Miskolc",null,"Magyarország");
+	}
+	
+	@Test (expected = Exception.class)
+	public void testConstructorWithNullCountry() throws UserValidationException, AddressValidationException{
+		address = new Address("Egyetem út","Miskolc","3525",null);
 	}
 }
