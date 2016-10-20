@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+	
+	<!-- You can set the location of your repository folder. By default it is in the ${user}/.m2/repository folder. -->
+	<localRepository>D:\Programok\eclipse-manuscript\repository</localRepository>
+	
+	<!-- user your database url, username and password -->
+	<profiles>
+		<profile>
+			<id>database</id>
+			<properties>
+				<url>jdbc:mysql://localhost:3306/manuscript</url>
+				<username>root</username>
+				<password></password>
+			</properties>
+		</profile>
+	</profiles>
+  
+	<activeProfiles>
+		<activeProfile>database</activeProfile>
+	</activeProfiles>
+
+</settings>
