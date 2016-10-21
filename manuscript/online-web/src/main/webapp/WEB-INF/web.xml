@@ -5,6 +5,8 @@
 	version="3.0">
 	<display-name>online-web</display-name>
 
+	<!-- This is serve all request what come to the online-web/ url path. 
+	This is the entry point of the web application. Furthermore the servlet will reply to the requests. -->
 	<servlet>
 		<servlet-name>manuscriptServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -12,8 +14,10 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/spring/applicationContext.xml</param-value>
 		</init-param>
+		<load-on-startup>1</load-on-startup>
 	</servlet>
-
+	
+	<!-- The manuscriptServlet will serve all request because of the <url-pattern>/*</url-pattern> -->
 	<servlet-mapping>
 		<servlet-name>manuscriptServlet</servlet-name>
 		<url-pattern>/*</url-pattern>
