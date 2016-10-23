@@ -15,4 +15,43 @@
 			<name>Balazs Kovacs</name>
 		</developer>
 	</developers>
+
+	<dependencies>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+	</dependencies>
+
+	<profiles>
+		<profile>
+			<id>mysqldeploy</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.liquibase</groupId>
+						<artifactId>liquibase-maven-plugin</artifactId>
+						<version>${liquibase-maven-plugin.version}</version>
+						<configuration>
+							<logging>debug</logging>
+							<changeLogFile>${basedir}/src/main/resources/liquibase/master.xml</changeLogFile>
+							<driver>com.mysql.jdbc.Driver</driver>
+							<url>${url}</url>
+							<username>${username}</username>
+							<password>${password}</password>
+						</configuration>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>dropAll</goal>
+									<goal>update</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+<!-- 	<changeSet id="create-tables" author="balazskovacs"> -->
+<!-- 		<sqlFile path="src/main/resources/liquibase/build/sql/ddl/create_tables.sql" encoding="UTF-8" dbms="mysql"/> -->
+<!-- 	</changeSet> -->
+
+	<changeSet id="init-languages" author="balazskovacs">
+		<sqlFile path="src/main/resources/liquibase/initial-scripts/dml/init-languages.sql" encoding="UTF-8" dbms="mysql"/>
+	</changeSet>
+	
+	<changeSet id="init-countries" author="balazskovacs">
+		<sqlFile path="src/main/resources/liquibase/initial-scripts/dml/init-countries.sql" encoding="UTF-8" dbms="mysql"/>
+		<addAutoIncrement tableName="COUNTRIES" columnName="ID" incrementBy="1" startWith="1" columnDataType="INT"/>
+	</changeSet>
+	
+	<changeSet id="init-user-status" author="balazskovacs">
+		<sqlFile path="src/main/resources/liquibase/initial-scripts/dml/init-user-status.sql" encoding="UTF-8" dbms="mysql"/>
+	</changeSet>
+	
+	<changeSet id="init-user-roles" author="balazskovacs">
+		<sqlFile path="src/main/resources/liquibase/initial-scripts/dml/init-user-roles.sql" encoding="UTF-8" dbms="mysql"/>
+	</changeSet>
+	
+</databaseChangeLog>

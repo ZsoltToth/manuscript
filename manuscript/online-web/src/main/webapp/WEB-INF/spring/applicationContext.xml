@@ -2,27 +2,36 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mybatis="http://mybatis.org/schema/mybatis-spring" xmlns:jee="http://www.springframework.org/schema/jee"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.3.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
-	<!-- -->
-	<context:component-scan base-package="manuscript" />
-	<!-- -->
+
 	<mvc:annotation-driven />
 
-	<!-- Velocity is responsible for to collect the all static resources from 
-		the given path. -->
-	<bean id="velocityConfig"
-		class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
-		<property name="resourceLoaderPath" value="/WEB-INF/web-content/" />
-	</bean>
-	<bean id="viewResolver"
-		class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
-		<property name="cache" value="true" />
-		<property name="prefix" value="" />
-		<property name="suffix" value=".html" />
-		<property name="exposeSpringMacroHelpers" value="true" />
+	<context:component-scan base-package="manuscript">
+	</context:component-scan>
+
+	<!-- Used to create the basic database data source. -->
+	<jee:jndi-lookup id="DatabaseDS" jndi-name="java:comp/env/jdbc/DatabaseDS" />
+
+	<!-- database connections -->
+	<bean class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="DatabaseDS" />
 	</bean>
 
-	<mvc:resources location="classpath:/META-INF/resources/webjars/" mapping="/webjars/**"/>
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="DatabaseDS" />
+	</bean>
+
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+
+	<!-- Looking for the MyBatis mapper interfaces. The package name must be *.mapper -->
+	<mybatis:scan base-package="**.mapper" />
+
+
 </beans>

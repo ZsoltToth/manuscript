@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+<!-- 	<changeSet id="create-tables" author="balazskovacs"> -->
+<!-- 		<sqlFile path="src/main/resources/liquibase/build/sql/ddl/create_tables.sql" encoding="UTF-8" dbms="mysql"/> -->
+<!-- 	</changeSet> -->
+
+	<changeSet id="create-languages-table" author="balazskovacs">
+		<sqlFile path="src/main/resources/liquibase/initial-scripts/ddl/languages.sql" encoding="UTF-8" dbms="mysql" endDelimiter="#"/>
+	</changeSet>
+	
+	<changeSet id="create-countries-table" author="balazskovacs">
+		<sqlFile path="src/main/resources/liquibase/initial-scripts/ddl/countries.sql" encoding="UTF-8" dbms="mysql" endDelimiter="#"/>
+	</changeSet>
+	
+	<changeSet id="create-user-status-table" author="balazskovacs">
+		<sqlFile path="src/main/resources/liquibase/initial-scripts/ddl/user-status.sql" encoding="UTF-8" dbms="mysql" endDelimiter="#"/>
+	</changeSet>
+	
+	<changeSet id="create-user-roles-table" author="balazskovacs">
+		<sqlFile path="src/main/resources/liquibase/initial-scripts/ddl/user-roles.sql" encoding="UTF-8" dbms="mysql" endDelimiter="#"/>
+	</changeSet>
+	
+	<changeSet id="create-manuscript-status-table" author="balazskovacs">
+		<sqlFile path="src/main/resources/liquibase/initial-scripts/ddl/manuscript-status.sql" encoding="UTF-8" dbms="mysql" endDelimiter="#"/>
+	</changeSet>
+	
+	<changeSet id="create-user-table" author="balazskovacs">
+		<sqlFile path="src/main/resources/liquibase/initial-scripts/ddl/user.sql" encoding="UTF-8" dbms="mysql" endDelimiter="#"/>
+	</changeSet>
+	
+	<changeSet id="create-password-table" author="balazskovacs">
+		<sqlFile path="src/main/resources/liquibase/initial-scripts/ddl/password.sql" encoding="UTF-8" dbms="mysql" endDelimiter="#"/>
+	</changeSet>
+	
+	<changeSet id="create-login-table" author="balazskovacs">
+		<sqlFile path="src/main/resources/liquibase/initial-scripts/ddl/login.sql" encoding="UTF-8" dbms="mysql" endDelimiter="#"/>
+	</changeSet>
+	
+	<changeSet id="create-academic-disciplines-table" author="balazskovacs">
+		<sqlFile path="src/main/resources/liquibase/initial-scripts/ddl/academic-disciplines.sql" encoding="UTF-8" dbms="mysql" endDelimiter="#"/>
+	</changeSet>
+</databaseChangeLog>
