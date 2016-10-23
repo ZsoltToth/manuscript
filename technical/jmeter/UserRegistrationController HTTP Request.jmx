@@ -34,22 +34,26 @@
               <collectionProp name="Arguments.arguments">
                 <elementProp name="" elementType="HTTPArgument">
                   <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                  <stringProp name="Argument.value">{ &#xd;
+                  <stringProp name="Argument.value">{&#xd;
 	&quot;user&quot; : {&#xd;
-		&quot;userName&quot;: &quot;bkovacs&quot;, &#xd;
-		&quot;firstName&quot;: &quot;Balazs&quot;,&#xd;
-		&quot;lastName&quot;: &quot;Kovacs&quot;,&#xd;
-		&quot;phoneNumber&quot;: &quot;+36305775488&quot;&#xd;
+		&quot;title&quot; : &quot;dr&quot;,&#xd;
+		&quot;firstName&quot; : &quot;John&quot;,&#xd;
+		&quot;lastName&quot; : &quot;Snow&quot;,&#xd;
+		&quot;userName&quot; : &quot;snowing&quot;,&#xd;
+		&quot;job&quot; : &quot;Lord Commander&quot;,&#xd;
+		&quot;email&quot; : &quot;john.snow@gmail.com&quot;,&#xd;
+		&quot;password&quot; : &quot;asdasd&quot;&#xd;
 	},&#xd;
-	&quot;address&quot; : {&#xd;
-		&quot;address&quot; : &quot;Serhaz ut&quot;,&#xd;
-		&quot;city&quot;: &quot;Miskolc&quot;,&#xd;
-		&quot;zipCode&quot;: &quot;3530&quot;,&#xd;
-		&quot;country&quot;: &quot;Hungary&quot;&#xd;
-	},&#xd;
-	&quot;password&quot; : &quot;asdF1234!&quot;&#xd;
-}&#xd;
-</stringProp>
+	&quot;academicDisciplines&quot; : [{&#xd;
+			&quot;academicDisciplinesId&quot; : &quot;001&quot;,&#xd;
+			&quot;academicDisciplines&quot; : &quot;kill&quot;&#xd;
+		}, {&#xd;
+			&quot;academicDisciplinesId&quot; : &quot;001001&quot;,&#xd;
+			&quot;academicDisciplines&quot; : &quot;eat&quot;&#xd;
+		}&#xd;
+	],&#xd;
+	&quot;passwordAgain&quot; : &quot;asdasd&quot;&#xd;
+}</stringProp>
                   <stringProp name="Argument.metadata">=</stringProp>
                 </elementProp>
               </collectionProp>

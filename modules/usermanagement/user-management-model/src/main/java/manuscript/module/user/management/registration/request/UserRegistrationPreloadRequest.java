@@ -1,4 +1,4 @@
-package manuscript.module.user.management.request;
+package manuscript.module.user.management.registration.request;
 
 /**
  * 
