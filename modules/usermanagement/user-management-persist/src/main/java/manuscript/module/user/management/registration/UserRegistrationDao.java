@@ -6,6 +6,8 @@ package manuscript.module.user.management.registration;
  *
  */
 public interface UserRegistrationDao {
-
-	String getUserName(String userName);
+	
+	public boolean isNameReserved(String userName);
+	
+	
 }

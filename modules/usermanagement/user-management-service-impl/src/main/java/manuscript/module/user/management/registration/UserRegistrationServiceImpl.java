@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import manuscript.module.user.management.registration.UserRegistrationService;
 import manuscript.module.user.management.registration.request.UserRegistrationPreloadRequest;
 import manuscript.module.user.management.registration.request.UserRegistrationRequest;
+import manuscript.module.user.management.response.UserRegistrationCheckNameResponse;
 import manuscript.module.user.management.response.UserRegistrationPreloadResponse;
 import manuscript.module.user.management.response.UserRegistrationResponse;
 
@@ -18,25 +19,27 @@ import manuscript.module.user.management.response.UserRegistrationResponse;
 public class UserRegistrationServiceImpl implements UserRegistrationService {
 
 	@Autowired
-	private UserRegistrationDao dao;
+	private UserRegistrationDao userRegistrationDao;
 
 	@Override
 	public UserRegistrationResponse createRegistration(UserRegistrationRequest request) {
-
-//		isUserNameExists(request.getUser().getUserName());
-
-		UserRegistrationResponse response = new UserRegistrationResponse();
-		response.setDummy("köszi megjött");
-		return response;
-	}
-
-	private void isUserNameExists(String userName) {
-		dao.getUserName(userName);
-	}
-
-	@Override
-	public UserRegistrationPreloadResponse userRegistrationPreload(UserRegistrationPreloadRequest request) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public UserRegistrationPreloadResponse userRegistrationPreload() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public UserRegistrationCheckNameResponse isNameReserved(String userName) {
+		
+		UserRegistrationCheckNameResponse response = new UserRegistrationCheckNameResponse();
+		
+				
+		return response;
+	}
+
 }

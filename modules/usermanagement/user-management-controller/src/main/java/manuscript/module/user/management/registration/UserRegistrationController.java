@@ -38,8 +38,8 @@ public class UserRegistrationController {
 
 	@RequestMapping("/isNameReserved")
 	@ResponseBody
-	public UserRegistrationCheckNameResponse proload(@RequestBody String userName) {
-		return null;
+	public UserRegistrationCheckNameResponse isNameReserved(@RequestBody String userName) {
+		return userRegistrationService.isNameReserved(userName);
 	}
 
 }
