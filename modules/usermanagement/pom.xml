@@ -26,4 +26,11 @@
 		<module>user-management-service</module>
 		<module>user-management-util</module>
 	</modules>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+	</dependencies>
 </project>

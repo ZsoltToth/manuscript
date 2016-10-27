@@ -36,10 +36,10 @@ public class UserRegistrationController {
 		return null;
 	}
 
-	@RequestMapping("/isNameReserved")
-	@ResponseBody
-	public UserRegistrationCheckNameResponse isNameReserved(@RequestBody String userName) {
-		return userRegistrationService.isNameReserved(userName);
-	}
+//	@RequestMapping("/isNameReserved")
+//	@ResponseBody
+//	public UserRegistrationCheckNameResponse isNameReserved(@RequestBody String userName) {
+//		return userRegistrationService.isNameReserved(userName);
+//	}
 
 }

@@ -43,12 +43,12 @@ public class UserRegistrationRequest {
 		this.academicDisciplines = academicDisciplines;
 	}
 
-	public String getPasswordAgaim() {
+	public String getPasswordAgain() {
 		return passwordAgain;
 	}
 
-	public void setPasswordAgaim(String passwordAgaim) {
-		this.passwordAgain = passwordAgaim;
+	public void setPasswordAgain(String passwordAgain) {
+		this.passwordAgain = passwordAgain;
 	}
 
 	@Override

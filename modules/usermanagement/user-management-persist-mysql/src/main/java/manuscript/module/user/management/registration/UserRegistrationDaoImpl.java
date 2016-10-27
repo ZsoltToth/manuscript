@@ -13,13 +13,21 @@ import manuscript.module.user.management.registration.mapper.UserRegistrationMap
 @Repository
 public class UserRegistrationDaoImpl implements UserRegistrationDao {
 
+	private static final int IS_USER_NAME_RESERVED = 1;
+	
 	@Autowired
 	private UserRegistrationMapper userRegistrationMapper;
 
 	@Override
-	public String getUserName(String userName) {
-		String answer = userRegistrationMapper.getUserName();
-		return answer;
+	public boolean isNameReserved(String userName) {
+		int getNumberOfUserName = userRegistrationMapper.isUserNameReserved(userName);
+		
+		if (IS_USER_NAME_RESERVED == getNumberOfUserName) {
+			return true; //user name is reserved
+		}
+		
+		return false;
 	}
+
 
 }

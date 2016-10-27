@@ -4,7 +4,7 @@
 <mapper
 	namespace='manuscript.module.user.management.registration.mapper.UserRegistrationMapper'>
 	
-	<select id="getUserName" resultType="string">
-	SELECT * FROM USER_ALIAS;
+	<select id="isUserNameReserved" resultType="int">
+	
 	</select>
 </mapper>
