@@ -1,24 +1,33 @@
-package manuscript.module.custom.annotation;
+/**
+ * 
+ */
+package manuscript.validation.custom.annotation;
+
+import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
+import manuscript.validation.custom.annotation.constraint.NotNullValidator;
+
+/**
+ * @author Balazs Kovacs
+ *
+ */
+
 @Documented
 @Constraint(validatedBy = { NotNullValidator.class })
-@Target({ ElementType.FIELD, ElementType.METHOD, ElementType.ANNOTATION_TYPE })
-@Retention(RetentionPolicy.RUNTIME)
+@Retention(RUNTIME)
+@Target({ FIELD, METHOD })
 public @interface NotNull {
-
-	String severity() default "";
 	
 	String message() default "This field not to be null!";
-	
 
 	Class<?>[] groups() default {};
 

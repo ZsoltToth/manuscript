@@ -1,10 +1,6 @@
 package manuscript.module.user.management.bean;
 
-import java.sql.Date;
-
-import javax.print.attribute.standard.Severity;
-
-import manuscript.module.custom.annotation.NotNull;
+import manuscript.validation.custom.annotation.NotNull;
 
 /**
  * 
@@ -12,7 +8,7 @@ import manuscript.module.custom.annotation.NotNull;
  *
  */
 public class User {
-	@NotNull(message = "szarcsi", severity = "FONTOS")
+	@NotNull(message = "szarcsi")
 	private String title;
 	@NotNull(message = "asdasdasdas")
 	private String firstName;

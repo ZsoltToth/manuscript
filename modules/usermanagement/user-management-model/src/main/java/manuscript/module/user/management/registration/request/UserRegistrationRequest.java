@@ -4,9 +4,9 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import manuscript.module.custom.annotation.NotNull;
 import manuscript.module.user.management.bean.AcademicDisciplines;
 import manuscript.module.user.management.bean.User;
+import manuscript.validation.custom.annotation.NotNull;
 
 /**
  * 
