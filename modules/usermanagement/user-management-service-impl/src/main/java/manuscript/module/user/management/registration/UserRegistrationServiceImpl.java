@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import manuscript.module.user.management.bean.User;
 import manuscript.module.user.management.registration.request.UserRegistrationRequest;
 import manuscript.module.user.management.response.UserRegistrationPreloadResponse;
 import manuscript.module.user.management.response.UserRegistrationResponse;
@@ -32,13 +33,19 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
 	@Override
 	public UserRegistrationResponse createRegistration(UserRegistrationRequest request) {
 		UserRegistrationResponse response = new UserRegistrationResponse();
+		User user = new User();
 
 		if (isNameReserved(request.getUser().getUserName())
 				&& passwordParityCheck(request.getUser().getPassword(), request.getPasswordAgain())) {
 			// TODO throw user name is reserved. return with error message
 			return response;
 		}
-
+		
+		user = request.getUser();	
+		user.setPassword(getEncodedPassword(request.getPasswordAgain()));
+		
+		LOGGER.debug("New user object: {}", user);
+		
 		return null;
 	}
 
@@ -47,7 +54,7 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
 	}
 
 	/**
-	 * Password parity check.
+	 * Password parity check. //TODO: fix it
 	 * 
 	 * @param password
 	 * @param passwordAgain
@@ -69,8 +76,7 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
 	 * @return generated hash password
 	 */
 	private String getEncodedPassword(String password) {
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		String encodedPassword = passwordEncoder.encode(password);
+		String encodedPassword = new BCryptPasswordEncoder().encode(password);
 		LOGGER.debug("Encoded password from {} is {}", password, encodedPassword);
 
 		return encodedPassword;

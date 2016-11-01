@@ -32,5 +32,9 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>manuscript.framework.validation</groupId>
+			<artifactId>validation</artifactId>
+		</dependency>
 	</dependencies>
 </project>

@@ -5,6 +5,6 @@
 	namespace='manuscript.module.user.management.registration.mapper.UserRegistrationMapper'>
 	
 	<select id="isUserNameReserved" resultType="int">
-	
+	SELECT count(username) FROM USER_ALIAS where username = #{userName};
 	</select>
 </mapper>

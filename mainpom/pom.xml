@@ -33,6 +33,7 @@
 		<angularjs.version>1.5.8</angularjs.version>
 		<bootstrap.version>3.3.7</bootstrap.version>
 		<webjars-locator.version>0.32</webjars-locator.version>
+		<validation.version>0.0.1-SNAPSHOT</validation.version>
 	</properties>
 
 	<dependencyManagement>
@@ -211,6 +212,12 @@
 				<groupId>org.webjars</groupId>
 				<artifactId>webjars-locator</artifactId>
 				<version>${webjars-locator.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>manuscript.framework.validation</groupId>
+				<artifactId>validation</artifactId>
+				<version>${validation.version}</version>
 			</dependency>
 
 		</dependencies>

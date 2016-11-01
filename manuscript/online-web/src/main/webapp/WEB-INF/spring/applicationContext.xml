@@ -30,8 +30,13 @@
 		<constructor-arg index="0" ref="sqlSessionFactory" />
 	</bean>
 
-	<!-- Looking for the MyBatis mapper interfaces. The package name must be *.mapper -->
+	<!-- Looking for the MyBatis mapper interfaces. The package name must be 
+		*.mapper -->
 	<mybatis:scan base-package="**.mapper" />
 
-
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/pages/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
 </beans>

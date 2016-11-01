@@ -2,6 +2,9 @@ package manuscript.module.user.management.registration.request;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
+import manuscript.module.custom.annotation.NotNull;
 import manuscript.module.user.management.bean.AcademicDisciplines;
 import manuscript.module.user.management.bean.User;
 
@@ -11,8 +14,10 @@ import manuscript.module.user.management.bean.User;
  *
  */
 public class UserRegistrationRequest {
+	@Valid
 	private User user;
 	private List<AcademicDisciplines> academicDisciplines;
+	@NotNull(message = "ezbizaszarcsi")
 	private String passwordAgain;
 
 	public UserRegistrationRequest() {
