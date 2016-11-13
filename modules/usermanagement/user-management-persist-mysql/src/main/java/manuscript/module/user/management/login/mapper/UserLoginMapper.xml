@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+        'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<mapper namespace='manuscript.module.user.management.login.mapper.UserLoginMapper'>
+
+    <select id="getUserPasswordToValidation" parameterType="java.util.String">
+        SELECT password.PASSWORD FROM LOGIN
+        INNER JOIN USR_PASSWORD ON LOGIN.PASSWORDID = USR_PASSWORD.PASSWORDID
+        WHERE login.USERNAME = #{userName};
+    </select>
+
+    <select id="isEnabledUser" resultType="int" parameterType="java.util.String">
+        SELECT ENABLED FROM LOGIN
+        WHERE USERNAME=#{userName};
+    </select>
+
+    <select id="getUserDatas" resultType="UserLoginDto" parameterType="java.util.String" resultMap="userResultMap">
+        SELECT USR_ALIAS.USR_USER_NAME, USR_USER.FIRST_NAME, USR_USER.LAST_NAME, USR_USER.PHONE_NUMBER, USR_USER.ADDRESS, USR_USER.CITY, USR_USER.ZIPCODE, USR_USER.COUNTRY FROM USR_USER
+        INNER JOIN USR_ALIAS on USR_ALIAS.USER_ID = USR_USER.USER_ID
+        WHERE  user_alias.USERNAME = #{username};
+    </select>
+
+    <select id="getFailedLoginPiece" resultType="int" parameterType="String">
+        SELECT FAILEDLOGINCOUNTER FROM LOGIN
+        WHERE USERNAME = #{userName};
+    </select>
+
+    <update id="increaseFailedLoginPiece" parameterType="String">
+        UPDATE ON login SET FAILEDLOGINCOUNTER = FAILEDLOGINCOUNTER + 1
+        WHERE USERNAME = #{userName};
+    </update>
+
+    <resultMap id="userResultMap" type="UserLoginDto">
+        <result property="userName" column="user_name" javaType="string"/>
+        <result property="firstName" column="first_name" javaType="string"/>
+        <result property="lastName" column="last_name" javaType="string"/>
+        <result property="phoneNumber" column="phone_number" javaType="string"/>
+        <result property="email" column="email" javaType="string"/>
+        <result property="job" column="job" javaType="string"/>
+        <association property="address" column="user_address" javaType="Address">
+            <result property="address" column="address" javaType="string"/>
+            <result property="city" column="city" javaType="string"/>
+            <result property="street" column="street" javaType="string"/>
+            <result property="country" column="country" javaType="string"/>
+        </association>
+    </resultMap>
+
+</mapper>
