@@ -1,12 +1,17 @@
 package manuscript.module.user.management.bean;
 
+import manuscript.validation.custom.annotation.NotNull;
+
 /**
  * 
  * @author Balazs Kovacs
  *
  */
 public class AcademicDisciplines {
+
+	@NotNull
 	private String academicDisciplinesId;
+	@NotNull
 	private String academicDisciplines;
 
 	public AcademicDisciplines() {

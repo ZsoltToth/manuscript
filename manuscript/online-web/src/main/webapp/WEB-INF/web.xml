@@ -5,8 +5,9 @@
 	version="3.0">
 	<display-name>online-web</display-name>
 
-	<!-- This is serve all request what come to the online-web/ url path. 
-	This is the entry point of the web application. Furthermore the servlet will reply to the requests. -->
+	<!-- This is serve all request what come to the online-web/ url path. This 
+		is the entry point of the web application. Furthermore the servlet will reply 
+		to the requests. -->
 	<servlet>
 		<servlet-name>manuscriptServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -16,10 +17,26 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-	
+
 	<!-- The manuscriptServlet will serve all request because of the <url-pattern>/*</url-pattern> -->
 	<servlet-mapping>
 		<servlet-name>manuscriptServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+
+	<filter>
+		<filter-name>validationHandlerFilter</filter-name>
+		<filter-class>manuscript.validation.handler.filter.ValidationHandlerFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>validationHandlerFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<resource-ref>
+		<res-ref-name>defaultEmailRegex</res-ref-name>
+		<res-type>java.lang.String</res-type>
+		<res-auth>Application</res-auth>
+		<res-sharing-scope>Shareable</res-sharing-scope>
+	</resource-ref>
 </web-app>

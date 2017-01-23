@@ -17,6 +17,8 @@ import javax.validation.Payload;
 import manuscript.validation.custom.annotation.constraint.NotNullValidator;
 
 /**
+ * The annotated Object must not be null. Accept any type.
+ * 
  * @author Balazs Kovacs
  *
  */
@@ -26,8 +28,8 @@ import manuscript.validation.custom.annotation.constraint.NotNullValidator;
 @Retention(RUNTIME)
 @Target({ FIELD, METHOD })
 public @interface NotNull {
-	
-	String message() default "This field not to be null!";
+
+	String message() default "The field is required.";
 
 	Class<?>[] groups() default {};
 

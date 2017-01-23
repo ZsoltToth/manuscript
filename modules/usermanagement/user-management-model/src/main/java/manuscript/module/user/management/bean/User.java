@@ -8,15 +8,26 @@ import manuscript.validation.custom.annotation.NotNull;
  *
  */
 public class User {
-	@NotNull(message = "szarcsi")
+
+	@NotNull
 	private String title;
-	@NotNull(message = "asdasdasdas")
+
+	@NotNull
 	private String firstName;
-	@NotNull(message = "szarasdasdasdasdasdcsi")
+
+	@NotNull
 	private String lastName;
+
+	@NotNull
 	private String userName;
+
+	@NotNull
 	private String job;
+
+	@NotNull
 	private String email;
+
+	@NotNull
 	private String password;
 
 	public User() {

@@ -17,7 +17,6 @@ public class UserRegistrationRequest {
 	@Valid
 	private User user;
 	private List<AcademicDisciplines> academicDisciplines;
-	@NotNull(message = "ezbizaszarcsi")
 	private String passwordAgain;
 
 	public UserRegistrationRequest() {
