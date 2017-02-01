@@ -18,20 +18,20 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
-	<!-- The manuscriptServlet will serve all request because of the <url-pattern>/*</url-pattern> -->
+	<!-- The manuscriptServlet will serve all request because of the <url-pattern>/</url-pattern> -->
 	<servlet-mapping>
 		<servlet-name>manuscriptServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
-	<filter>
-		<filter-name>validationHandlerFilter</filter-name>
-		<filter-class>manuscript.validation.handler.filter.ValidationHandlerFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>validationHandlerFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
+<!-- 	<filter> -->
+<!-- 		<filter-name>validationHandlerFilter</filter-name> -->
+<!-- 		<filter-class>manuscript.validation.handler.filter.ValidationHandlerFilter</filter-class> -->
+<!-- 	</filter> -->
+<!-- 	<filter-mapping> -->
+<!-- 		<filter-name>validationHandlerFilter</filter-name> -->
+<!-- 		<url-pattern>/*</url-pattern> -->
+<!-- 	</filter-mapping> -->
 	
 	<resource-ref>
 		<res-ref-name>defaultEmailRegex</res-ref-name>

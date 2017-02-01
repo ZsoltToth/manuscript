@@ -1,12 +1,13 @@
-package manuscript.module.user.management.registration.request;
+package manuscript.module.user.management.request;
 
 import java.util.List;
 
 import javax.validation.Valid;
 
 import manuscript.module.user.management.bean.AcademicDisciplines;
+import manuscript.module.user.management.bean.Password;
 import manuscript.module.user.management.bean.User;
-import manuscript.validation.custom.annotation.NotNull;
+import manuscript.validation.custom.annotation.Size;
 
 /**
  * 
@@ -14,21 +15,26 @@ import manuscript.validation.custom.annotation.NotNull;
  *
  */
 public class UserRegistrationRequest {
+
 	@Valid
 	private User user;
+
+	@Valid
+	private Password password;
+
+	@Size(min = 1, message = "Please select one or more disciplines!")
 	private List<AcademicDisciplines> academicDisciplines;
-	private String passwordAgain;
+
+	public UserRegistrationRequest(User user, Password password, List<AcademicDisciplines> academicDisciplines) {
+		super();
+		this.user = user;
+		this.password = password;
+		this.academicDisciplines = academicDisciplines;
+	}
 
 	public UserRegistrationRequest() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-
-	public UserRegistrationRequest(User user, List<AcademicDisciplines> academicDisciplines, String passwordAgaim) {
-		super();
-		this.user = user;
-		this.academicDisciplines = academicDisciplines;
-		this.passwordAgain = passwordAgaim;
 	}
 
 	public User getUser() {
@@ -39,27 +45,20 @@ public class UserRegistrationRequest {
 		this.user = user;
 	}
 
+	public Password getPassword() {
+		return password;
+	}
+
+	public void setPassword(Password password) {
+		this.password = password;
+	}
+
 	public List<AcademicDisciplines> getAcademicDisciplines() {
 		return academicDisciplines;
 	}
 
 	public void setAcademicDisciplines(List<AcademicDisciplines> academicDisciplines) {
 		this.academicDisciplines = academicDisciplines;
-	}
-
-	public String getPasswordAgain() {
-		return passwordAgain;
-	}
-
-	public void setPasswordAgain(String passwordAgain) {
-		this.passwordAgain = passwordAgain;
-	}
-
-	@Override
-	public String toString() {
-		return "UserRegistrationRequest [" + (user != null ? "user=" + user + ", " : "")
-				+ (academicDisciplines != null ? "academicDisciplines=" + academicDisciplines + ", " : "")
-				+ (passwordAgain != null ? "passwordAgain=" + passwordAgain : "") + "]";
 	}
 
 }

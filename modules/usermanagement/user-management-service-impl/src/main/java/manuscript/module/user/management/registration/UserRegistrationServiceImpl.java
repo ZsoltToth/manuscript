@@ -1,13 +1,19 @@
 package manuscript.module.user.management.registration;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import manuscript.module.user.management.bean.User;
-import manuscript.module.user.management.registration.request.UserRegistrationRequest;
+import manuscript.module.user.management.bean.AdditionalData;
+import manuscript.module.user.management.bean.Password;
+import manuscript.module.user.management.bean.Role;
+import manuscript.module.user.management.exception.PasswordParityCheckFailedException;
+import manuscript.module.user.management.exception.UserNameAlreadyUsedException;
+import manuscript.module.user.management.request.UserRegistrationRequest;
 import manuscript.module.user.management.response.UserRegistrationPreloadResponse;
 import manuscript.module.user.management.response.UserRegistrationResponse;
 
@@ -26,27 +32,34 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
 
 	@Override
 	public UserRegistrationPreloadResponse userRegistrationPreload() {
-		// TODO Auto-generated method stub
-		return null;
+		UserRegistrationPreloadResponse response = new UserRegistrationPreloadResponse();
+		response.setAcademicDisciplines(userRegistrationDao.getAcademicDisciplines());
+		return response;
 	}
 
 	@Override
 	public UserRegistrationResponse createRegistration(UserRegistrationRequest request) {
 		UserRegistrationResponse response = new UserRegistrationResponse();
-		User user = new User();
+		AdditionalData additionalData = new AdditionalData();
 
-		if (isNameReserved(request.getUser().getUserName())
-				&& passwordParityCheck(request.getUser().getPassword(), request.getPasswordAgain())) {
-			// TODO throw user name is reserved. return with error message
-			return response;
+		if (isNameReserved(request.getUser().getUserName())) {
+			LOGGER.error("{} is already used.", request.getUser().getUserName());
+			throw new UserNameAlreadyUsedException("User name is already used! ");
 		}
+
+		passwordParityCheck(request.getPassword());
 		
-		user = request.getUser();	
-		user.setPassword(getEncodedPassword(request.getPasswordAgain()));
-		
-		LOGGER.debug("New user object: {}", user);
-		
-		return null;
+		additionalData.setDefaultRoles(getDefaultRoles());
+
+		try {
+		 userRegistrationDao.createRegistration(request, additionalData);
+		 LOGGER.debug("Registration success with customer id");
+		 } catch (Exception e) {
+		 e.printStackTrace();
+		 }
+
+		response.setSucces(true);
+		return response;
 	}
 
 	private boolean isNameReserved(String userName) {
@@ -54,19 +67,20 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
 	}
 
 	/**
-	 * Password parity check. //TODO: fix it
-	 * 
-	 * @param password
-	 * @param passwordAgain
-	 * @return true if the two password are the same. Otherwise false.
+	 * Check that the given password are the same or not. If the password are
+	 * the same do nothing, otherwise throw PasswordParityCheckFailedException
 	 */
-	private boolean passwordParityCheck(String password, String passwordAgain) {
-		if (password.equals(passwordAgain)) {
-			LOGGER.debug("Password parity check was succes. {} - {}", password, passwordAgain);
-			return true;
+	private void passwordParityCheck(Password password) {
+		if (password.getPassword().equals(password.getPasswordAgain())) {
+			LOGGER.debug("Password parity check was succes: ", password);
+
+			password.setPassword(getEncodedPassword(password.getPassword()));
+		} else {
+			LOGGER.debug("Password parity check failed: ", password);
+			throw new PasswordParityCheckFailedException(
+					"Password parity check failed. The given passwords are not mached.");
 		}
-		LOGGER.debug("Password parity check failed. {} - {}", password, passwordAgain);
-		return false;
+
 	}
 
 	/**
@@ -77,9 +91,13 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
 	 */
 	private String getEncodedPassword(String password) {
 		String encodedPassword = new BCryptPasswordEncoder().encode(password);
-		LOGGER.debug("Encoded password from {} is {}", password, encodedPassword);
+		LOGGER.debug("Encoded password is {}", encodedPassword);
 
 		return encodedPassword;
+	}
+
+	private List<Role> getDefaultRoles() {
+		return userRegistrationDao.getDefaultRole();
 	}
 
 }

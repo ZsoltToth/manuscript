@@ -5,7 +5,7 @@ package manuscript.module.user.management.response;
  * @author bkovacs2
  *
  */
-public class Erros {
+public class Errors {
 
 	String field;
 	String defaultMessage;

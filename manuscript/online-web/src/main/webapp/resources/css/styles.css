@@ -1,0 +1,30 @@
+@CHARSET "UTF-8";
+
+.form-login {
+	max-width: 350px;
+	margin: 0 auto;
+}
+
+.form-control {
+	height: 40px;
+	/* 	margin-top: 5px; */
+	/* 	margin-bottom: 5px; */
+}
+
+form.registration-form {
+	max-width: 500px;
+	margin: 0 auto;
+}
+
+div.registration-title, div.login-title {
+	text-align: center;
+}
+
+.form-group {
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+#academicDisciplonesBtn {
+	height: 40px;
+}

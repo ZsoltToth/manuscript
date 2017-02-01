@@ -4,39 +4,36 @@ import manuscript.validation.custom.annotation.NotNull;
 
 /**
  * 
+ * 
  * @author Balazs Kovacs
  *
  */
 public class User {
 
-	@NotNull
+	@NotNull(message = "The title field is required!")
 	private String title;
 
-	@NotNull
+	@NotNull(message = "The first name field is required!")
 	private String firstName;
 
-	@NotNull
+	@NotNull(message = "The last name field is required!")
 	private String lastName;
 
-	@NotNull
+	@NotNull(message = "The user name field is required!")
 	private String userName;
 
-	@NotNull
+	@NotNull(message = "The job field is required!")
 	private String job;
 
-	@NotNull
+	@NotNull(message = "The email field is required!")
 	private String email;
-
-	@NotNull
-	private String password;
 
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(String title, String firstName, String lastName, String userName, String job, String email,
-			String password) {
+	public User(String title, String firstName, String lastName, String userName, String job, String email) {
 		super();
 		this.title = title;
 		this.firstName = firstName;
@@ -44,7 +41,6 @@ public class User {
 		this.userName = userName;
 		this.job = job;
 		this.email = email;
-		this.password = password;
 	}
 
 	public String getTitle() {
@@ -93,24 +89,6 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	@Override
-	public String toString() {
-		return "User [" + (title != null ? "title=" + title + ", " : "")
-				+ (firstName != null ? "firstName=" + firstName + ", " : "")
-				+ (lastName != null ? "lastName=" + lastName + ", " : "")
-				+ (userName != null ? "userName=" + userName + ", " : "") + (job != null ? "job=" + job + ", " : "")
-				+ (email != null ? "email=" + email + ", " : "") + (password != null ? "password=" + password : "")
-				+ "]";
 	}
 
 }

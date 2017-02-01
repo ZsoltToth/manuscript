@@ -1,24 +1,24 @@
 package manuscript.module.user.management.response;
 
-public class UserRegistrationResponse extends BasicRespons{
-	String asdasd;
+public class UserRegistrationResponse extends BasicRespons {
+	private boolean isSucces;
+
+	public UserRegistrationResponse(boolean isSucces) {
+		super();
+		this.isSucces = isSucces;
+	}
 
 	public UserRegistrationResponse() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public UserRegistrationResponse(String asdasd) {
-		super();
-		this.asdasd = asdasd;
+	public boolean isSucces() {
+		return isSucces;
 	}
 
-	public String getAsdasd() {
-		return asdasd;
-	}
-
-	public void setAsdasd(String asdasd) {
-		this.asdasd = asdasd;
+	public void setSucces(boolean isSucces) {
+		this.isSucces = isSucces;
 	}
 
 }

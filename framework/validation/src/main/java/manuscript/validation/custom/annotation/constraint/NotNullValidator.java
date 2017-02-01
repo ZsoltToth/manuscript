@@ -1,5 +1,7 @@
 package manuscript.validation.custom.annotation.constraint;
 
+import java.util.ArrayList;
+
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
@@ -20,7 +22,7 @@ public class NotNullValidator implements ConstraintValidator<NotNull, Object> {
 
 	@Override
 	public boolean isValid(Object value, ConstraintValidatorContext context) {
-		return value != null ? true : false;
+		return value != null && !String.valueOf(value).equals("") ? true : false;
 	}
 
 }
