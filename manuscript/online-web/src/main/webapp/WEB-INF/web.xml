@@ -13,7 +13,10 @@
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/spring/applicationContext.xml</param-value>
+			<param-value>
+				/WEB-INF/spring/applicationContext.xml
+				,/WEB-INF/spring/spring-security.xml
+			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
@@ -24,15 +27,35 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
-<!-- 	<filter> -->
-<!-- 		<filter-name>validationHandlerFilter</filter-name> -->
-<!-- 		<filter-class>manuscript.validation.handler.filter.ValidationHandlerFilter</filter-class> -->
-<!-- 	</filter> -->
-<!-- 	<filter-mapping> -->
-<!-- 		<filter-name>validationHandlerFilter</filter-name> -->
-<!-- 		<url-pattern>/*</url-pattern> -->
-<!-- 	</filter-mapping> -->
-	
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<listener>
+		<listener-class>ro.isdc.wro.http.WroServletContextListener</listener-class>
+	</listener>
+	<filter>
+		<filter-name>WebResourceOptimizer</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+		<init-param>
+			<param-name>targetBeanName</param-name>
+			<param-value>wroFilter</param-value>
+		</init-param>
+		<init-param>
+			<param-name>targetFilterLifecycle</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>WebResourceOptimizer</filter-name>
+		<url-pattern>/wro/*</url-pattern>
+	</filter-mapping>
+
 	<resource-ref>
 		<res-ref-name>defaultEmailRegex</res-ref-name>
 		<res-type>java.lang.String</res-type>

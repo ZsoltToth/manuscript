@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<alias name="filterChainProxy" alias="springSecurityFilterChain" />
+
+	<bean id="filterChainProxy" class="org.springframework.security.web.FilterChainProxy">
+		<security:filter-chain-map request-matcher="ant">
+			<security:filter-chain pattern="/" filters="requestContextFilter,securityContextFilter" />
+			<security:filter-chain pattern="/**/login.html" filters="requestContextFilter,securityContextFilter" />
+			<security:filter-chain pattern="/**/loginTemplate.html" filters="requestContextFilter,securityContextFilter" />
+			<security:filter-chain pattern="/**/registrationTemplate.html" filters="requestContextFilter,securityContextFilter" />
+			<security:filter-chain pattern="/wro/*.js" filters="none" />
+			<security:filter-chain pattern="/wro/*.min.js.map" filters="none" />
+			<security:filter-chain pattern="/wro/*.css" filters="none" />
+			<security:filter-chain pattern="/**"
+				filters="requestContextFilter,securityContextFilter, logoutFilter, formLoginFilter , requestCacheFilter,exceptionTranslator,filterSecurityInterceptor" />
+		</security:filter-chain-map>
+	</bean>
+
+	<bean id="requestContextFilter" class="org.springframework.web.filter.RequestContextFilter" />
+
+
+	<bean id="securityContextRepository" class="org.springframework.security.web.context.HttpSessionSecurityContextRepository" />
+
+	<bean id="securityContextFilter" class="org.springframework.security.web.context.SecurityContextPersistenceFilter">
+		<constructor-arg name="repo" ref="securityContextRepository" />
+	</bean>
+
+	<bean id="logoutFilter" class="org.springframework.security.web.authentication.logout.LogoutFilter">
+		<constructor-arg value="/login.html?logout" />
+		<constructor-arg>
+			<list>
+				<bean class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler" />
+			</list>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="authenticationSuccessHandler" class="manuscript.system.security.config.CustomSavedRequestAwareAuthenticationSuccessHandler"/>
+
+	<bean id="authenticationFailureHandler" class="manuscript.system.security.config.CustomSimpleUrlAuthenticationFailureHandler"/>
+
+	<bean id="formLoginFilter" class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
+		<property name="authenticationManager" ref="authenticationManager" />
+		<property name="filterProcessesUrl" value="/j_spring_security_check" />
+		<property name="usernameParameter" value="username" />
+		<property name="passwordParameter" value="password" />
+		<property name="authenticationSuccessHandler" ref="authenticationSuccessHandler" />
+		<property name="authenticationFailureHandler" ref="authenticationFailureHandler" />
+	</bean>
+
+
+
+	<security:authentication-manager id="authenticationManager">
+		<security:authentication-provider>
+			<security:user-service>
+				<security:user name="test" password="password" authorities="ROLE_USER" />
+			</security:user-service>
+		</security:authentication-provider>
+	</security:authentication-manager>
+
+
+	<bean id="requestCacheFilter" class="org.springframework.security.web.savedrequest.RequestCacheAwareFilter" />
+
+	<bean id="exceptionTranslator" class="org.springframework.security.web.access.ExceptionTranslationFilter">
+		<property name="accessDeniedHandler" ref="accessDeniedHandler"></property>
+		<constructor-arg ref="loginUrlAuthenticationEntryPoint" />
+		<constructor-arg ref="myRequestCache" />
+	</bean>
+
+	<bean name="loginUrlAuthenticationEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+		<constructor-arg name="loginFormUrl" value="/"></constructor-arg>
+	</bean>
+
+	<bean id="myRequestCache" class="org.springframework.security.web.savedrequest.HttpSessionRequestCache" />
+
+	<bean id="filterSecurityInterceptor" class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor">
+		<property name="authenticationManager" ref="authenticationManager" />
+		<property name="accessDecisionManager" ref="accessDecisionManager"></property>
+		<property name="securityMetadataSource">
+			<security:filter-security-metadata-source use-expressions="true">
+				<security:intercept-url pattern="/**" access="isFullyAuthenticated()" />
+			</security:filter-security-metadata-source>
+		</property>
+	</bean>
+
+	<bean id="accessDecisionManager" class="org.springframework.security.access.vote.AffirmativeBased">
+		<constructor-arg name="decisionVoters">
+			<list>
+				<ref bean="roleVoter" />
+				<ref bean="authenticatedVoter" />
+				<ref bean="expressionVoter" />
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean id="roleVoter" class="org.springframework.security.access.vote.RoleVoter" />
+	<bean id="authenticatedVoter" class="org.springframework.security.access.vote.AuthenticatedVoter" />
+	<bean id="expressionVoter" class="org.springframework.security.web.access.expression.WebExpressionVoter" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- <bean id="daoAuthenticationProvider" -->
+	<!-- class="org.springframework.security.authentication.dao.DaoAuthenticationProvider"> -->
+	<!-- <property name="userDetailsService" ref="inMemoryDaoImpl" /> -->
+	<!-- </bean> -->
+
+	<!-- <bean id="inMemoryDaoImpl" -->
+	<!-- class=”org.springframework.security.core.userdetails.memory.InMemoryDaoImpl”> -->
+	<!-- <property name="userMap"> -->
+	<!-- <value>test=testpassword,enabled,ROLE_USER</value> -->
+	<!-- </property> -->
+	<!-- </bean> -->
+
+	<!-- <bean id="anonProvider" -->
+	<!-- class="org.springframework.security.providers.anonymous.AnonymousAuthenticationProvider"> -->
+	<!-- <property name="key" value="myapp" /> -->
+	<!-- </bean> -->
+
+
+
+
+
+
+
+
+	<!-- <bean id="filterChainProxy" class="org.springframework.security.web.FilterChainProxy"> -->
+	<!-- <security:filter-chain-map request-matcher="ant"> -->
+	<!-- <security:filter-chain pattern="/login.html" filters="none"/> -->
+	<!-- <security:filter-chain pattern="/**/*.js" filters="none"/> -->
+	<!-- <security:filter-chain pattern="/**/*.css" filters="none"/> -->
+	<!-- <security:filter-chain pattern="/**" filters="requestContextFilter"/> -->
+	<!-- </security:filter-chain-map> -->
+	<!-- </bean> -->
+
+	<!-- <bean id="securityContextPersistenceFilter" class="org.springframework.security.web.context.SecurityContextPersistenceFilter"/> -->
+
+
+
+	<!-- <bean id="exceptionTranslationFilter" class="org.springframework.security.web.access.ExceptionTranslationFilter"> -->
+	<!-- <constructor-arg name="authenticationEntryPoint" ref="authenticationEntryPoint"/> -->
+	<!-- <property name="accessDeniedHandler" ref="accessDeniedHandler" /> -->
+	<!-- </bean> -->
+
+	<!-- <bean id="authenticationEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint"> -->
+	<!-- <constructor-arg name="loginFormUrl" value="/login.html" /> -->
+	<!-- </bean> -->
+
+	<bean id="accessDeniedHandler" class="org.springframework.security.web.access.AccessDeniedHandlerImpl">
+		<property name="errorPage" value="/accessDenied.html" />
+	</bean>
+
+
+
+
+
+
+
+	<!-- <bean id="customAuthenticationProcessingFilter" class="manuscript.system.security.config.CustomAuthenticationProcessingFilter"> -->
+	<!-- <property name="authenticationManager" ref="authenticationManager" /> -->
+	<!-- </bean> -->
+
+
+
+
+	<!-- <security:http auto-config="false" use-expressions="true" entry-point-ref="authenticationEntryPoint" authentication-manager-ref="authenticationManager"> -->
+	<!-- <security:custom-filter position="FORM_LOGIN_FILTER" ref="customAuthenticationProcessingFilter" /> -->
+	<!-- <security:intercept-url pattern="/resources/**" access="permitAll"/> -->
+	<!-- <security:intercept-url pattern="/login.html" access="permitAll" /> -->
+	<!-- </security:http> -->
+
+
+	<!-- <security:authentication-manager id="authenticationManager"> -->
+	<!-- <security:authentication-provider ref="customAuthenticationProvider" /> -->
+	<!-- </security:authentication-manager> -->
+
+	<!-- <bean id="customAuthenticationProvider" class="manuscript.system.security.config.CustomAuthenticationProvider" /> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- <security:http pattern="/**/login.html" security="none"></security:http> -->
+	<!-- <security:http pattern="/**/registration.html" security="none"></security:http> -->
+	<!-- <security:http pattern="/**/*.js" security="none"></security:http> -->
+	<!-- <security:http pattern="/webjars/**" security="none"></security:http> -->
+	<!-- <security:http pattern="/**/*.css" security="none"></security:http> -->
+	<!-- <security:http pattern="/registration/**" security="none"></security:http> -->
+	<!-- <security:http auto-config="true"> -->
+	<!-- <security:intercept-url pattern="/home**" access="hasRole('ROLE_USER')" /> -->
+	<!-- <security:intercept-url pattern="/static/**" access="hasRole('ROLE_USER')" /> -->
+	<!-- <security:form-login -->
+	<!-- login-page="/login.html" -->
+	<!-- default-target-url="/welcome" -->
+	<!-- authentication-failure-url="/login?error" -->
+	<!-- username-parameter="username" -->
+	<!-- password-parameter="password" /> -->
+	<!-- <security:logout logout-success-url="/login?logout" /> -->
+	<!-- <security:access-denied-handler/> -->
+	<!-- <security:csrf/> -->
+	<!-- </security:http> -->
+
+	<!-- <security:authentication-manager> -->
+	<!-- <security:authentication-provider> -->
+	<!-- <security:user-service> -->
+	<!-- <security:user name="mkyong" password="123456" authorities="ROLE_USER" /> -->
+	<!-- </security:user-service> -->
+	<!-- </security:authentication-provider> -->
+	<!-- </security:authentication-manager> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</beans>

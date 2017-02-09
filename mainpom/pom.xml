@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>manuscript</groupId>
 	<artifactId>mainpom</artifactId>
@@ -28,14 +27,12 @@
 		<jcl-over-slf4j.version>1.7.21</jcl-over-slf4j.version>
 		<jackson-databind.version>2.8.2</jackson-databind.version>
 		<servlet-api.version>2.5</servlet-api.version>
-		<velocity.version>1.7</velocity.version>
-		<velocity-tools.version>2.0</velocity-tools.version>
 		<validation.version>0.0.1-SNAPSHOT</validation.version>
 		<gson.version>2.8.0</gson.version>
-		<bootstrap.version>3.3.5</bootstrap.version>
-		<angularjs.version>1.6.0</angularjs.version>
-		<angular-ui-bootstrap.version>2.2.0</angular-ui-bootstrap.version>
 		<junit.version>4.12</junit.version>
+		<wro4j-core.version>1.8.0</wro4j-core.version>
+		<angularjs.version>1.6.1</angularjs.version>
+		<angular-material.version>1.1.1</angular-material.version>
 	</properties>
 
 	<dependencyManagement>
@@ -189,38 +186,17 @@
 				<version>${servlet-api.version}</version>
 			</dependency>
 
-			<!-- Velocity -->
-			<dependency>
-				<groupId>org.apache.velocity</groupId>
-				<artifactId>velocity</artifactId>
-				<version>${velocity.version}</version>
-			</dependency>
-
-			<!-- Velocity-tools -->
-			<dependency>
-				<groupId>org.apache.velocity</groupId>
-				<artifactId>velocity-tools</artifactId>
-				<version>${velocity-tools.version}</version>
-			</dependency>
-
 			<!-- Web based webjars -->
-
-			<dependency>
-				<groupId>org.webjars</groupId>
-				<artifactId>bootstrap</artifactId>
-				<version>${bootstrap.version}</version>
-			</dependency>
 
 			<dependency>
 				<groupId>org.webjars</groupId>
 				<artifactId>angularjs</artifactId>
 				<version>${angularjs.version}</version>
 			</dependency>
-
 			<dependency>
 				<groupId>org.webjars</groupId>
-				<artifactId>angular-ui-bootstrap</artifactId>
-				<version>${angular-ui-bootstrap.version}</version>
+				<artifactId>angular-material</artifactId>
+				<version>${angular-material.version}</version>
 			</dependency>
 
 			<dependency>
@@ -236,6 +212,16 @@
 				<version>${junit.version}</version>
 			</dependency>
 
+			<dependency>
+				<groupId>ro.isdc.wro4j</groupId>
+				<artifactId>wro4j-core</artifactId>
+				<version>${wro4j-core.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>ro.isdc.wro4j</groupId>
+				<artifactId>wro4j-extensions</artifactId>
+				<version>${wro4j-core.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 

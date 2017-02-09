@@ -1,0 +1,13 @@
+<md-content layout-padding>
+	<div>
+		<form name="loginForm" class="form-login">
+			<div layout-gt-sm="column">
+				<md-input-container class="md-block" flex-gt-sm> <label>Username</label> <input ng-model="credential.username"> </md-input-container>
+				<md-input-container class="md-block" flex-gt-sm> <label>Password</label> <input ng-model="credential.password"> </md-input-container>
+			</div>
+
+			<md-button type="submit" class="md-primary btn btn-primary" ng-click="authenticate()">Login</md-button>
+			{{errorMessage}}
+		</form>
+	</div>
+</md-content>
