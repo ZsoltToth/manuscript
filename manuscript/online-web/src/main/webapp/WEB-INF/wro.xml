@@ -27,4 +27,8 @@
 	<group name="logincss">
 		<css>/resources/css/styles.css</css>
 	</group>
+	
+	<group name="indexpreload">
+		<js>/resources/indexApp.js</js>
+	</group>
 </groups>  

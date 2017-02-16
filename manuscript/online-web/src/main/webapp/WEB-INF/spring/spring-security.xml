@@ -8,9 +8,11 @@
 	<bean id="filterChainProxy" class="org.springframework.security.web.FilterChainProxy">
 		<security:filter-chain-map request-matcher="ant">
 			<security:filter-chain pattern="/" filters="sessionInvalidation,securityContextFilter" />
+			<security:filter-chain pattern="/logout" filters="logoutFilter" />
 			<security:filter-chain pattern="/**/login.html" filters="sessionInvalidation" />
 			<security:filter-chain pattern="/**/loginTemplate.html" filters="none" />
 			<security:filter-chain pattern="/**/registrationTemplate.html" filters="none" />
+<!-- 			Because of angularJS -->
 			<security:filter-chain pattern="/wro/*.js" filters="none" />
 			<security:filter-chain pattern="/wro/*.min.js.map" filters="none" />
 			<security:filter-chain pattern="/wro/*.css" filters="none" />
@@ -18,7 +20,6 @@
 			<security:filter-chain pattern="/**/*.woff2" filters="none" />
 			<security:filter-chain pattern="/**/*.woff" filters="none" />
 			<security:filter-chain pattern="/**/*.ttf" filters="none" />
-<!-- 			<security:filter-chain pattern="/uib/template/typeahead/*.html" filters="none" /> -->
 			
 			<security:filter-chain pattern="/registration/preload" filters="none" />
 			<security:filter-chain pattern="/registration/create" filters="none" />
@@ -37,9 +38,11 @@
 	<bean id="securityContextFilter" class="org.springframework.security.web.context.SecurityContextPersistenceFilter">
 		<constructor-arg name="repo" ref="securityContextRepository" />
 	</bean>
+	
+	<bean id="customSimpleUrlLogoutSuccessHandler" class="manuscript.system.security.config.CustomSimpleUrlLogoutSuccessHandler"/>
 
 	<bean id="logoutFilter" class="org.springframework.security.web.authentication.logout.LogoutFilter">
-		<constructor-arg value="/login.html?logout" />
+		<constructor-arg name="logoutSuccessHandler" ref="customSimpleUrlLogoutSuccessHandler" />
 		<constructor-arg>
 			<list>
 				<bean class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler" />
