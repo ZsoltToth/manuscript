@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -36,7 +37,7 @@ public class LoginMapperTest {
 	}
 	
 	@Test
-	public void asdasdasd(){
+	public void loadPasswordByUserIdTest(){
 		String password = loginMapper.loadPasswordByUserId("7");
 		
 		Boolean encodedPass = passwordEncoder.matches("password", password);
@@ -47,6 +48,14 @@ public class LoginMapperTest {
 		}else{
 			System.out.println("PASSWORD ENCODE IS " + encodedPass);
 			assertTrue("Password missmatched", encodedPass == false);
+		}
+
+	}
+	
+	@Test
+	public void loadAuthorityListByUserIdTest(){
+		for (String role : loginMapper.loadAuthorityListByUserId("19")) {
+			System.out.println("Granted roles: " + role);
 		}
 
 	}

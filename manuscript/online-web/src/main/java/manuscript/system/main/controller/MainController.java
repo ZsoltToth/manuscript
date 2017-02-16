@@ -7,6 +7,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import manuscript.system.security.config.AuthenticatedUser;
+
 @Controller
 public class MainController {
 	
@@ -19,8 +21,8 @@ public class MainController {
 	
 	@RequestMapping(path = "/index.html")
 	public String getIndex() {
-		UserDetails userDetails =
-				 (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		AuthenticatedUser userDetails =
+				 (AuthenticatedUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		LOGGER.debug("FULLY LOADED PRINCIPAL, {}", userDetails);
 		return "static/index.html";
 	}

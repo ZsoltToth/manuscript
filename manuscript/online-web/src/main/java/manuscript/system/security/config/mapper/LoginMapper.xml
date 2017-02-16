@@ -10,4 +10,10 @@
 	<select id="loadPasswordByUserId" resultType="String">
 		SELECT PASSWORD FROM USR_PASSWORD WHERE USER_ID = #{userId}
 	</select>
+	
+	
+	<select id="loadAuthorityListByUserId" resultType="string">
+		SELECT ROLE FROM MANUSCRIPT.USR_ROLES USERROLE INNER JOIN ROLE ROLE ON USERROLE.ROLE_ID = ROLE.ROLE_ID WHERE USERROLE.USER_ID = #{userId};
+	</select>
+	
 </mapper>
