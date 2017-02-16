@@ -30,5 +30,6 @@
 	
 	<group name="indexpreload">
 		<js>/resources/indexApp.js</js>
+		<js>/resources/management/personalDataSettingsController.js</js>
 	</group>
 </groups>  

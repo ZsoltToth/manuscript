@@ -1,11 +1,11 @@
 package manuscript.module.user.management.response;
 
 public class UserRegistrationResponse extends BasicRespons {
-	private boolean isSucces;
+	private boolean isSuccess;
 
-	public UserRegistrationResponse(boolean isSucces) {
+	public UserRegistrationResponse(boolean isSuccess) {
 		super();
-		this.isSucces = isSucces;
+		this.isSuccess = isSuccess;
 	}
 
 	public UserRegistrationResponse() {
@@ -13,12 +13,12 @@ public class UserRegistrationResponse extends BasicRespons {
 		// TODO Auto-generated constructor stub
 	}
 
-	public boolean isSucces() {
-		return isSucces;
+	public boolean isSuccess() {
+		return isSuccess;
 	}
 
-	public void setSucces(boolean isSucces) {
-		this.isSucces = isSucces;
+	public void setSuccess(boolean isSucces) {
+		this.isSuccess = isSucces;
 	}
 
 }

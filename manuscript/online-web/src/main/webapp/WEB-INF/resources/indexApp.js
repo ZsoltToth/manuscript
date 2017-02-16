@@ -3,7 +3,7 @@ var indexApp = angular.module('indexApp', ['ngRoute', 'ngMessages', 'ui.bootstra
 indexApp.config(['$routeProvider', '$locationProvider',
 	function ($routeProvider, $locationProvider) {
 		$locationProvider.hashPrefix('');
-		
+
 		$routeProvider.when('/logout', {
 			resolve: {
 				preload: function ($http) {
@@ -15,5 +15,8 @@ indexApp.config(['$routeProvider', '$locationProvider',
 					})
 				}
 			}
+		}).when('/personalDataSettings', {
+			templateUrl: 'static/management/personalDataSettingsTemplate.html',
+			controller: 'personalDataSettingsController'
 		})
 	}]);

@@ -5,7 +5,7 @@ app.controller('loginController', ['$scope', '$http', '$location',
 			username: '',
 			password: ''
 		}
-		
+
 		$scope.authenticate = function () {
 			var data = "username=" + $scope.credential.username + "&password=" + $scope.credential.password + "&submit=Login";
 

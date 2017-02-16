@@ -58,7 +58,7 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
 		 e.printStackTrace();
 		 }
 
-		response.setSucces(true);
+		response.setSuccess(true);
 		return response;
 	}
 
