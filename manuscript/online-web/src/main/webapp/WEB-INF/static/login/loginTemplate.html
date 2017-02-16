@@ -1,13 +1,46 @@
-<md-content layout-padding>
-	<div>
-		<form name="loginForm" class="form-login">
-			<div layout-gt-sm="column">
-				<md-input-container class="md-block" flex-gt-sm> <label>Username</label> <input ng-model="credential.username"> </md-input-container>
-				<md-input-container class="md-block" flex-gt-sm> <label>Password</label> <input ng-model="credential.password"> </md-input-container>
-			</div>
+<!-- <md-content layout-padding> -->
+<!-- 	<div> -->
+<!-- 		<form name="loginForm" class="form-login"> -->
+<!-- 			<div layout-gt-sm="column"> -->
+<!-- 				<md-input-container class="md-block" flex-gt-sm> <label>Username</label> <input ng-model="credential.username"> </md-input-container> -->
+<!-- 				<md-input-container class="md-block" flex-gt-sm> <label>Password</label> <input type="password" ng-model="credential.password"> </md-input-container> -->
+<!-- 			</div> -->
+<!-- 			<div>{{errorMessage}}</div> -->
+<!-- 			<md-button type="submit" class="md-primary btn btn-primary" ng-click="authenticate()">Login</md-button> -->
+<!-- 		</form> -->
+<!-- 	</div> -->
+<!-- </md-content> -->
+<div>
+	<form class="form-login" id="form-login">
+		<div class="login-title">
+			<h1>Login</h1>
+		</div>
+		<div class="form-group">
+			<input 
+            class="form-control"
+            type="text" 
+            placeholder="Username" 
+            required="required" 
+            id="username" 
+            ng-model="credential.username"/>
+		</div>
+		
+		<div class="form-group">
+			<input class="form-control" 
+            type="password" 
+            placeholder="Password" 
+            required="required" 
+            id="password" 
+            ng-model="credential.password"/>
+		</div>
+		<div>{{errorMessage}}</div>
+		<div class="form-group">
+			<button class="btn btn-primary btn-block" 
+            type="submit" 
+            ng-click="authenticate()">Login</button>
+		</div>
+		
+		<pre ng-bind="data | json"></pre>
+	</form>
 
-			<md-button type="submit" class="md-primary btn btn-primary" ng-click="authenticate()">Login</md-button>
-			{{errorMessage}}
-		</form>
-	</div>
-</md-content>
+</div>

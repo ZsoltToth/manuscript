@@ -35,6 +35,12 @@
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	<listener>
+    <listener-class>
+      org.springframework.security.web.session.HttpSessionEventPublisher
+    </listener-class>
+  </listener> 
 
 	<listener>
 		<listener-class>ro.isdc.wro.http.WroServletContextListener</listener-class>

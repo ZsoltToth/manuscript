@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngRoute', 'ngMaterial', 'ngMessages']);
+var app = angular.module('app', ['ngRoute', 'ngMessages', 'ui.bootstrap', 'ui.bootstrap.typeahead']);
 
 app.config(['$routeProvider', '$locationProvider',
 	function ($routeProvider, $locationProvider) {
@@ -6,7 +6,15 @@ app.config(['$routeProvider', '$locationProvider',
 
 		$routeProvider.when('/registration', {
 			templateUrl: 'static/registration/registrationTemplate.html',
-			controller: 'registrationController'
+			controller: 'registrationController',
+			resolve: {
+				preload: function ($http) {
+					return $http.post('registration/preload').then(function (response) {
+						console.log(response);
+						return response;
+					})
+				}
+			}
 		}).when('/', {
 			templateUrl: 'static/login/loginTemplate.html',
 			controller: 'loginController'

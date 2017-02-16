@@ -2,11 +2,11 @@
 <configuration>
 
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-	    <layout class="ch.qos.logback.classic.PatternLayout">
-		<Pattern>
-			%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n
-		</Pattern>
-	    </layout>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>
+				%d{yyyy-MM-dd HH:mm:ss} [%X{sessionId}] %-5level %logger{36} - %msg%n
+			</Pattern>
+		</layout>
 	</appender>
 
 	<logger name="org.springframework" level="debug" additivity="false">
@@ -14,6 +14,10 @@
 	</logger>
 
 	<logger name="manuscript" level="debug" additivity="false">
+		<appender-ref ref="STDOUT" />
+	</logger>
+
+	<logger name="org.apache.catalina.webresources.Cache" level="info" additivity="false">
 		<appender-ref ref="STDOUT" />
 	</logger>
 

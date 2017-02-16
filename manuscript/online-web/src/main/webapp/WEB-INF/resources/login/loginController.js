@@ -6,8 +6,6 @@ app.controller('loginController', ['$scope', '$http', '$location',
 			password: ''
 		}
 		
-		$scope.errorMessage;
-
 		$scope.authenticate = function () {
 			var data = "username=" + $scope.credential.username + "&password=" + $scope.credential.password + "&submit=Login";
 
@@ -17,12 +15,13 @@ app.controller('loginController', ['$scope', '$http', '$location',
 				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 				data: data
 			}).then(function successCallback(response) {
-				//window.location = 'index2.html';
-				console.log("success: ", response)
+				window.location = 'index.html';
+				console.log("success: ", response);
 			}, function errorCallback(response) {
-				console.log("error: ", response)
+				console.log("error: ", response);
 				$scope.errorMessage = response.data.errorMessage;
 				$scope.credential.username = '';
+				$scope.credential.password = '';
 			})
 		}
 	}]);

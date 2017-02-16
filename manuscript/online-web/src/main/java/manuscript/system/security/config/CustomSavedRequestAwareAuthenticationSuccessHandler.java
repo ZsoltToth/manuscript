@@ -23,8 +23,7 @@ public class CustomSavedRequestAwareAuthenticationSuccessHandler implements Auth
 		if (session == null) {
 			throw new SessionAuthenticationException("VALAMI SZAR VAN");
 		}
-
-		session.setAttribute("ASDADASDASD", "asdadadad");
+		
 		response.setContentType("application/json");
 
 		ReplyObject reply = new ReplyObject();

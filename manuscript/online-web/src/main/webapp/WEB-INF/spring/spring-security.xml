@@ -7,19 +7,29 @@
 
 	<bean id="filterChainProxy" class="org.springframework.security.web.FilterChainProxy">
 		<security:filter-chain-map request-matcher="ant">
-			<security:filter-chain pattern="/" filters="requestContextFilter,securityContextFilter" />
-			<security:filter-chain pattern="/**/login.html" filters="requestContextFilter,securityContextFilter" />
-			<security:filter-chain pattern="/**/loginTemplate.html" filters="requestContextFilter,securityContextFilter" />
-			<security:filter-chain pattern="/**/registrationTemplate.html" filters="requestContextFilter,securityContextFilter" />
+			<security:filter-chain pattern="/" filters="sessionInvalidation,securityContextFilter" />
+			<security:filter-chain pattern="/**/login.html" filters="sessionInvalidation" />
+			<security:filter-chain pattern="/**/loginTemplate.html" filters="none" />
+			<security:filter-chain pattern="/**/registrationTemplate.html" filters="none" />
 			<security:filter-chain pattern="/wro/*.js" filters="none" />
 			<security:filter-chain pattern="/wro/*.min.js.map" filters="none" />
 			<security:filter-chain pattern="/wro/*.css" filters="none" />
+			<security:filter-chain pattern="/wro/*.min.css.map" filters="none" />
+			<security:filter-chain pattern="/**/*.woff2" filters="none" />
+			<security:filter-chain pattern="/**/*.woff" filters="none" />
+			<security:filter-chain pattern="/**/*.ttf" filters="none" />
+<!-- 			<security:filter-chain pattern="/uib/template/typeahead/*.html" filters="none" /> -->
+			
+			<security:filter-chain pattern="/registration/preload" filters="none" />
+			<security:filter-chain pattern="/registration/create" filters="none" />
 			<security:filter-chain pattern="/**"
-				filters="requestContextFilter,securityContextFilter, logoutFilter, formLoginFilter , requestCacheFilter,exceptionTranslator,filterSecurityInterceptor" />
+				filters="securityContextFilter, logoutFilter, formLoginFilter , requestCacheFilter,exceptionTranslator,filterSecurityInterceptor" />
 		</security:filter-chain-map>
 	</bean>
 
-	<bean id="requestContextFilter" class="org.springframework.web.filter.RequestContextFilter" />
+	<!-- <bean id="requestContextFilter" class="org.springframework.web.filter.RequestContextFilter" /> -->
+	
+	<bean id="sessionInvalidation" class="manuscript.system.security.config.SessionInvalidation"></bean>
 
 
 	<bean id="securityContextRepository" class="org.springframework.security.web.context.HttpSessionSecurityContextRepository" />
@@ -36,10 +46,10 @@
 			</list>
 		</constructor-arg>
 	</bean>
-	
-	<bean id="authenticationSuccessHandler" class="manuscript.system.security.config.CustomSavedRequestAwareAuthenticationSuccessHandler"/>
 
-	<bean id="authenticationFailureHandler" class="manuscript.system.security.config.CustomSimpleUrlAuthenticationFailureHandler"/>
+	<bean id="authenticationSuccessHandler" class="manuscript.system.security.config.CustomSavedRequestAwareAuthenticationSuccessHandler" />
+
+	<bean id="authenticationFailureHandler" class="manuscript.system.security.config.CustomSimpleUrlAuthenticationFailureHandler" />
 
 	<bean id="formLoginFilter" class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
 		<property name="authenticationManager" ref="authenticationManager" />
@@ -48,17 +58,37 @@
 		<property name="passwordParameter" value="password" />
 		<property name="authenticationSuccessHandler" ref="authenticationSuccessHandler" />
 		<property name="authenticationFailureHandler" ref="authenticationFailureHandler" />
+		<property name="sessionAuthenticationStrategy" ref="sessionAuthenticationStrategy" />
+	</bean>
+
+	<bean id="sessionAuthenticationStrategy" class="org.springframework.security.web.authentication.session.SessionFixationProtectionStrategy">
+		<property name="alwaysCreateSession" value="true" />
 	</bean>
 
 
+	<!-- <security:authentication-manager id="authenticationManager"> -->
+	<!-- <security:authentication-provider> -->
+	<!-- <security:user-service> -->
+	<!-- <security:user name="test" password="password" authorities="ROLE_USER" /> -->
+	<!-- </security:user-service> -->
+	<!-- </security:authentication-provider> -->
+	<!-- </security:authentication-manager> -->
+
+	<bean id="customUserDetailsService" class="manuscript.system.security.config.CustomUserDetailsService" />
 
 	<security:authentication-manager id="authenticationManager">
-		<security:authentication-provider>
-			<security:user-service>
-				<security:user name="test" password="password" authorities="ROLE_USER" />
-			</security:user-service>
+		<security:authentication-provider user-service-ref="customUserDetailsService">
+			<security:password-encoder hash="bcrypt" />
 		</security:authentication-provider>
 	</security:authentication-manager>
+
+	<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
+
+	<bean id="daoAuthenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+		<property name="userDetailsService" ref="customUserDetailsService" />
+		<!-- <property name="saltSource" ref bean="saltSource" /> -->
+		<property name="passwordEncoder" ref="passwordEncoder" />
+	</bean>
 
 
 	<bean id="requestCacheFilter" class="org.springframework.security.web.savedrequest.RequestCacheAwareFilter" />
