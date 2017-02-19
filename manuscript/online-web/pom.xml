@@ -45,6 +45,31 @@
 		</dependency>
 
 		<dependency>
+			<groupId>manuscript.module.manuscript.management</groupId>
+			<artifactId>manuscript-management-controller</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>manuscript.module.manuscript.management</groupId>
+			<artifactId>manuscript-management-model</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>manuscript.module.manuscript.management</groupId>
+			<artifactId>manuscript-management-persist</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>manuscript.module.manuscript.management</groupId>
+			<artifactId>manuscript-management-persist-mysql</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>manuscript.module.manuscript.management</groupId>
+			<artifactId>manuscript-management-service</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>manuscript.module.manuscript.management</groupId>
+			<artifactId>manuscript-management-service-impl</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>angularjs</artifactId>
 		</dependency>
@@ -58,6 +83,5 @@
 			<groupId>org.webjars</groupId>
 			<artifactId>angular-ui-bootstrap</artifactId>
 		</dependency>
-
 	</dependencies>
 </project>

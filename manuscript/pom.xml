@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>manuscript</groupId>
@@ -26,6 +25,7 @@
 
 	<properties>
 		<user-management.version>0.0.1-SNAPSHOT</user-management.version>
+		<manuscript-management.version>0.0.1-SNAPSHOT</manuscript-management.version>
 	</properties>
 
 	<dependencyManagement>
@@ -60,6 +60,39 @@
 				<groupId>manuscript.module.user.management</groupId>
 				<artifactId>user-management-service-impl</artifactId>
 				<version>${user-management.version}</version>
+			</dependency>
+
+			<!-- manuscript-management module -->
+
+			<dependency>
+				<groupId>manuscript.module.manuscript.management</groupId>
+				<artifactId>manuscript-management-controller</artifactId>
+				<version>${manuscript-management.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>manuscript.module.manuscript.management</groupId>
+				<artifactId>manuscript-management-model</artifactId>
+				<version>${manuscript-management.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>manuscript.module.manuscript.management</groupId>
+				<artifactId>manuscript-management-persist</artifactId>
+				<version>${manuscript-management.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>manuscript.module.manuscript.management</groupId>
+				<artifactId>manuscript-management-persist-mysql</artifactId>
+				<version>${manuscript-management.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>manuscript.module.manuscript.management</groupId>
+				<artifactId>manuscript-management-service</artifactId>
+				<version>${manuscript-management.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>manuscript.module.manuscript.management</groupId>
+				<artifactId>manuscript-management-service-impl</artifactId>
+				<version>${manuscript-management.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -121,6 +154,13 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-crypto</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>compile</scope>
+		</dependency>
+
 		<dependency>
 			<groupId>ro.isdc.wro4j</groupId>
 			<artifactId>wro4j-core</artifactId>

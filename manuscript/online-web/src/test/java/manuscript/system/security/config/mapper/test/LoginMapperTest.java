@@ -2,6 +2,7 @@ package manuscript.system.security.config.mapper.test;
 
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ public class LoginMapperTest {
 	private PasswordEncoder passwordEncoder;
 	
 	@Test
+	@Ignore
 	public void loadUserIdByUsernameTest() {
 		String id = loginMapper.loadUserIdByUsername("admin");
 		
@@ -37,6 +39,7 @@ public class LoginMapperTest {
 	}
 	
 	@Test
+	@Ignore
 	public void loadPasswordByUserIdTest(){
 		String password = loginMapper.loadPasswordByUserId("7");
 		
@@ -53,6 +56,7 @@ public class LoginMapperTest {
 	}
 	
 	@Test
+	@Ignore
 	public void loadAuthorityListByUserIdTest(){
 		for (String role : loginMapper.loadAuthorityListByUserId("19")) {
 			System.out.println("Granted roles: " + role);
