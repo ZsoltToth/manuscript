@@ -18,5 +18,7 @@ indexApp.config(['$routeProvider', '$locationProvider',
 		}).when('/personalDataSettings', {
 			templateUrl: 'static/management/personalDataSettingsTemplate.html',
 			controller: 'personalDataSettingsController'
+		}).when('/', {
+			templateUrl: 'static/index/indexTemplate.html'
 		})
 	}]);

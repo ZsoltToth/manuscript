@@ -13,6 +13,11 @@ import org.springframework.security.web.authentication.session.SessionAuthentica
 
 import com.google.gson.Gson;
 
+/**
+ * 
+ * @author Balazs Kovacs
+ *
+ */
 public class CustomSavedRequestAwareAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
 	@Override
@@ -21,7 +26,8 @@ public class CustomSavedRequestAwareAuthenticationSuccessHandler implements Auth
 		HttpSession session = request.getSession(false);
 
 		if (session == null) {
-			throw new SessionAuthenticationException("VALAMI SZAR VAN");
+			authentication.setAuthenticated(false);
+			throw new SessionAuthenticationException("After authentication process something went wrong!");
 		}
 		
 		response.setContentType("application/json");
@@ -32,9 +38,7 @@ public class CustomSavedRequestAwareAuthenticationSuccessHandler implements Auth
 		reply.setSession(session.getId());
 
 		Gson gson = new Gson();
-
 		byte[] b = gson.toJson(reply).getBytes();
-
 		response.setContentLength(b.length);
 		response.getOutputStream().write(b);
 	}

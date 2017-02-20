@@ -1,12 +1,14 @@
 package manuscript.system.exception.handling;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 
+/**
+ * 
+ * @author Balazs Kovacs
+ *
+ */
 @ControllerAdvice
 public class GlobalExceptionHandlingControllerAdvice {
 
@@ -15,9 +17,10 @@ public class GlobalExceptionHandlingControllerAdvice {
 	public GlobalExceptionHandlingControllerAdvice() {
 	}
 
-//	@ExceptionHandler(RuntimeException.class)
-//	public void handleRuntimeException(HttpServletRequest req, Exception exception) {
-//		LOGGER.error("Request raised a Exception");
-//	}
+	// @ExceptionHandler(RuntimeException.class)
+	// public void handleRuntimeException(HttpServletRequest req, Exception
+	// exception) {
+	// LOGGER.error("Request raised a Exception");
+	// }
 
 }

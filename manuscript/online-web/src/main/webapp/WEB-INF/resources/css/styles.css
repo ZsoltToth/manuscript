@@ -1,5 +1,10 @@
 @CHARSET "UTF-8";
 
+body {
+	background-image: url("/online-web/resources/pictures/pic.jpg");
+	background-repeat: no-repeat;
+}
+
 .form-login {
 	max-width: 350px;
 	margin: 0 auto;

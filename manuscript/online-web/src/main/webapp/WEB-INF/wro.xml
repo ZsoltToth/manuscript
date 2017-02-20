@@ -14,7 +14,7 @@
 	</group>
 
 	<group name="loginjs">
-		<js>/resources/app.js</js>
+		<js>/resources/App.js</js>
 		<js>/resources/registration/registrationController.js</js>
 		<js>/resources/login/loginController.js</js>
 	</group>
@@ -26,6 +26,7 @@
 
 	<group name="logincss">
 		<css>/resources/css/styles.css</css>
+<!-- 		<css>/resources/pic.jpg</css> -->
 	</group>
 	
 	<group name="indexpreload">

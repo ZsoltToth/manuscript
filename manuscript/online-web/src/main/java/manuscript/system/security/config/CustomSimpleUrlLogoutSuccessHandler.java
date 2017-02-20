@@ -11,7 +11,12 @@ import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuc
 
 import com.google.gson.Gson;
 
-public class CustomSimpleUrlLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler{
+/**
+ * 
+ * @author Balazs Kovacs
+ *
+ */
+public class CustomSimpleUrlLogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler {
 
 	@Override
 	public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)

@@ -13,15 +13,20 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 
 import com.google.gson.Gson;
 
-public class CustomSimpleUrlAuthenticationFailureHandler implements AuthenticationFailureHandler{
+/**
+ * 
+ * @author Balazs Kovacs
+ *
+ */
+public class CustomSimpleUrlAuthenticationFailureHandler implements AuthenticationFailureHandler {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(CustomSimpleUrlAuthenticationFailureHandler.class);
-	
+
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
 		LOGGER.debug("Exception occured during authentication!", exception);
-		
+
 		response.setContentType("application/json");
 		response.setStatus(400);
 
@@ -36,7 +41,7 @@ public class CustomSimpleUrlAuthenticationFailureHandler implements Authenticati
 
 		response.setContentLength(b.length);
 		response.getOutputStream().write(b);
-		
+
 	}
 
 }

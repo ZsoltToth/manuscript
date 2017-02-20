@@ -1,5 +1,10 @@
 package manuscript.system.security.config;
 
+/**
+ * 
+ * @author Balazs Kovacs
+ *
+ */
 public class ReplyObject {
 	String success;
 	String session;
