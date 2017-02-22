@@ -20,6 +20,16 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+	
+	<filter>
+		<filter-name>LogbackConfig</filter-name>
+		<filter-class>manuscript.system.logback.filter.LogbackConfigFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>LogbackConfig</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 
 	<!-- The manuscriptServlet will serve all request because of the <url-pattern>/</url-pattern> -->
 	<servlet-mapping>
