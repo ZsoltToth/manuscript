@@ -122,9 +122,9 @@
 	<bean id="roleVoter" class="org.springframework.security.access.vote.RoleVoter" />
 	<bean id="authenticatedVoter" class="org.springframework.security.access.vote.AuthenticatedVoter" />
 	<bean id="expressionVoter" class="org.springframework.security.web.access.expression.WebExpressionVoter" />
-
-	<bean id="accessDeniedHandler" class="org.springframework.security.web.access.AccessDeniedHandlerImpl">
-		<property name="errorPage" value="/accessDenied.html" />
+	
+	<bean id="accessDeniedHandler" class="manuscript.system.security.config.CustomerAccessDeniedHandlerImpl">
+		<property name="defaultErrorUrl" value="/" />
 	</bean>
 
 </beans>

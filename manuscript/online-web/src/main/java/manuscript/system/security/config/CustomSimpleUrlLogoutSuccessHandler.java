@@ -23,7 +23,7 @@ public class CustomSimpleUrlLogoutSuccessHandler extends SimpleUrlLogoutSuccessH
 			throws IOException, ServletException {
 		ReplyObject reply = new ReplyObject();
 
-		reply.setSuccess("true");
+		reply.setSuccess(true);
 
 		Gson gson = new Gson();
 

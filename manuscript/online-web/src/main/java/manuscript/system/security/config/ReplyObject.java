@@ -6,9 +6,9 @@ package manuscript.system.security.config;
  *
  */
 public class ReplyObject {
-	String success;
-	String session;
-	String errorMessage;
+	private boolean success;
+	private String session;
+	private String errorMessage;
 
 	public String getErrorMessage() {
 		return errorMessage;
@@ -18,20 +18,20 @@ public class ReplyObject {
 		this.errorMessage = errorMessage;
 	}
 
-	public String getSuccess() {
-		return success;
-	}
-
-	public void setSuccess(String success) {
-		this.success = success;
-	}
-
 	public String getSession() {
 		return session;
 	}
 
 	public void setSession(String session) {
 		this.session = session;
+	}
+
+	public boolean isSuccess() {
+		return success;
+	}
+
+	public void setSuccess(boolean success) {
+		this.success = success;
 	}
 
 }

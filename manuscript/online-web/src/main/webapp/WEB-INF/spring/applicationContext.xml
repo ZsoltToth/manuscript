@@ -13,6 +13,8 @@
 
 	<context:component-scan base-package="manuscript">
 	</context:component-scan>
+	
+	<security:global-method-security pre-post-annotations="enabled"/>
 
 	<!-- Used to create the basic database data source. -->
 	<jee:jndi-lookup id="DatabaseDS" jndi-name="java:comp/env/jdbc/DatabaseDS" />

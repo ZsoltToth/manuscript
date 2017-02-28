@@ -32,7 +32,7 @@ public class CustomSimpleUrlAuthenticationFailureHandler implements Authenticati
 
 		ReplyObject reply = new ReplyObject();
 
-		reply.setSuccess("false");
+		reply.setSuccess(false);
 		reply.setErrorMessage("Wrong username or password. Please try again.");
 
 		Gson gson = new Gson();

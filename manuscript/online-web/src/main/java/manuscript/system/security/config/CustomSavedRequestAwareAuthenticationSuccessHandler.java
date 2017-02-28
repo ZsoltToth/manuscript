@@ -29,12 +29,12 @@ public class CustomSavedRequestAwareAuthenticationSuccessHandler implements Auth
 			authentication.setAuthenticated(false);
 			throw new SessionAuthenticationException("After authentication process something went wrong!");
 		}
-		
+
 		response.setContentType("application/json");
 
 		ReplyObject reply = new ReplyObject();
 
-		reply.setSuccess("true");
+		reply.setSuccess(true);
 		reply.setSession(session.getId());
 
 		Gson gson = new Gson();
