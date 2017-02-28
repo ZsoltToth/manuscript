@@ -1,4 +1,4 @@
-package manuscript.system.security.config;
+package manuscript.system.security.bean;
 
 import java.util.Collection;
 

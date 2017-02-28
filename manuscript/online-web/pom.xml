@@ -83,5 +83,13 @@
 			<groupId>org.webjars</groupId>
 			<artifactId>angular-ui-bootstrap</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>manuscript.framework.security</groupId>
+			<artifactId>manuscript-security-model</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>manuscript.framework.security</groupId>
+			<artifactId>manuscript-security-service</artifactId>
+		</dependency>
 	</dependencies>
 </project>

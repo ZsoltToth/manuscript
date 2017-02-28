@@ -13,6 +13,8 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 
 import com.google.gson.Gson;
 
+import manuscript.system.security.reply.ReplyObject;
+
 /**
  * 
  * @author Balazs Kovacs

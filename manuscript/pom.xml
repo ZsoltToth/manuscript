@@ -26,6 +26,7 @@
 	<properties>
 		<user-management.version>0.0.1-SNAPSHOT</user-management.version>
 		<manuscript-management.version>0.0.1-SNAPSHOT</manuscript-management.version>
+		<manuscript-security.version>0.0.1-SNAPSHOT</manuscript-security.version>
 	</properties>
 
 	<dependencyManagement>
@@ -93,6 +94,17 @@
 				<groupId>manuscript.module.manuscript.management</groupId>
 				<artifactId>manuscript-management-service-impl</artifactId>
 				<version>${manuscript-management.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>manuscript.framework.security</groupId>
+				<artifactId>manuscript-security-model</artifactId>
+				<version>${manuscript-security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>manuscript.framework.security</groupId>
+				<artifactId>manuscript-security-service</artifactId>
+				<version>${manuscript-security.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

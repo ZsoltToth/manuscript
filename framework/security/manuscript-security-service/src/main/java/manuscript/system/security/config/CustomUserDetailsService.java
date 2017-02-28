@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import manuscript.system.security.bean.AuthenticatedUser;
 import manuscript.system.security.config.mapper.LoginMapper;
 
 /**

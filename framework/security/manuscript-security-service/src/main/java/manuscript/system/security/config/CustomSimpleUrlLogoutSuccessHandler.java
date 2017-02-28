@@ -11,6 +11,8 @@ import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuc
 
 import com.google.gson.Gson;
 
+import manuscript.system.security.reply.ReplyObject;
+
 /**
  * 
  * @author Balazs Kovacs
