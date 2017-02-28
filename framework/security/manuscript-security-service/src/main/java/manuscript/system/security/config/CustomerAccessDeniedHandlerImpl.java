@@ -11,6 +11,8 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 
 import com.google.gson.Gson;
 
+import manuscript.system.security.reply.AccessDeniedReply;
+
 /**
  * 
  * @author Balazs Kovacs
