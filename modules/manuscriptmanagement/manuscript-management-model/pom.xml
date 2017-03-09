@@ -14,11 +14,4 @@
 		</developer>
 	</developers>
 
-	<dependencies>
-		<dependency>
-			<groupId>manuscript.module.manuscript.management</groupId>
-			<artifactId>manuscript-management-util</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-	</dependencies>
 </project>

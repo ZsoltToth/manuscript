@@ -32,7 +32,7 @@
           </elementProp>
           <elementProp name="USER_NAME" elementType="Argument">
             <stringProp name="Argument.name">USER_NAME</stringProp>
-            <stringProp name="Argument.value">bkovacs</stringProp>
+            <stringProp name="Argument.value">bkovacs222</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="PASSWORD" elementType="Argument">
@@ -72,7 +72,7 @@
         <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
       </ConfigTestElement>
       <hashTree/>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Not autheticated functions" enabled="false">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Not autheticated functions" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -87,13 +87,6 @@
         <stringProp name="ThreadGroup.delay"></stringProp>
       </ThreadGroup>
       <hashTree>
-        <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
-          <collectionProp name="CookieManager.cookies"/>
-          <boolProp name="CookieManager.clearEachIteration">true</boolProp>
-          <stringProp name="CookieManager.policy">standard</stringProp>
-          <stringProp name="CookieManager.implementation">org.apache.jmeter.protocol.http.control.HC4CookieHandler</stringProp>
-        </CookieManager>
-        <hashTree/>
         <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
           <collectionProp name="Asserion.test_strings">
             <stringProp name="49586">200</stringProp>
@@ -104,7 +97,7 @@
           <stringProp name="Assertion.scope">all</stringProp>
         </ResponseAssertion>
         <hashTree/>
-        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Registration function" enabled="true">
+        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Registration function" enabled="false">
           <boolProp name="LoopController.continue_forever">true</boolProp>
           <stringProp name="LoopController.loops">1</stringProp>
         </LoopController>
@@ -119,6 +112,106 @@
           </HeaderManager>
           <hashTree/>
           <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Simple Controller" enabled="true"/>
+          <hashTree>
+            <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
+              <stringProp name="delimiter">,</stringProp>
+              <stringProp name="fileEncoding"></stringProp>
+              <stringProp name="filename">C:\Users\Balazs Kovacs\Desktop\test.txt</stringProp>
+              <boolProp name="quotedData">true</boolProp>
+              <boolProp name="recycle">true</boolProp>
+              <stringProp name="shareMode">shareMode.all</stringProp>
+              <boolProp name="stopThread">false</boolProp>
+              <stringProp name="variableNames">userName</stringProp>
+            </CSVDataSet>
+            <hashTree/>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="registration/create" enabled="true">
+              <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.value">{&#xd;
+  &quot;user&quot;: {&#xd;
+    &quot;title&quot;: &quot;Dr&quot;,&#xd;
+    &quot;firstName&quot;: &quot;John&quot;,&#xd;
+    &quot;lastName&quot;: &quot;Snow&quot;,&#xd;
+    &quot;job&quot;: &quot;Commander&quot;,&#xd;
+    &quot;email&quot;: &quot;john@gmail.com&quot;,&#xd;
+    &quot;userName&quot;: &quot;${userName}&quot;&#xd;
+  },&#xd;
+  &quot;password&quot;: {&#xd;
+    &quot;password&quot;: &quot;password&quot;,&#xd;
+    &quot;passwordAgain&quot;: &quot;password&quot;&#xd;
+  },&#xd;
+  &quot;academicDisciplines&quot;: [&#xd;
+    {&#xd;
+      &quot;academicDisciplinesId&quot;: &quot;01&quot;,&#xd;
+      &quot;academicDisciplines&quot;: &quot;Architecture&quot;&#xd;
+    }&#xd;
+  ]&#xd;
+}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain"></stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.protocol"></stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">${CONTEXT}${URL_REG_PREFIX}/create</stringProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <stringProp name="HTTPSampler.implementation">Java</stringProp>
+              <boolProp name="HTTPSampler.monitor">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Registration function" enabled="true">
+          <boolProp name="LoopController.continue_forever">true</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </LoopController>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="/registration/preload" enabled="true"/>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/registration/preload" enabled="true">
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variables pré-définies" enabled="true">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain"></stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.protocol"></stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">${CONTEXT}${URL_REG_PREFIX}/preload</stringProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <stringProp name="HTTPSampler.implementation">Java</stringProp>
+              <boolProp name="HTTPSampler.monitor">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree/>
+          </hashTree>
+          <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Simple Controller" enabled="false"/>
           <hashTree>
             <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
               <stringProp name="delimiter">,</stringProp>
@@ -215,7 +308,7 @@
         </ResultCollector>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Authenticated functions" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Authenticated functions" enabled="false">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -235,15 +328,6 @@
           <stringProp name="LoopController.loops">1</stringProp>
         </LoopController>
         <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-            <collectionProp name="HeaderManager.headers">
-              <elementProp name="" elementType="Header">
-                <stringProp name="Header.name">Content-Type</stringProp>
-                <stringProp name="Header.value">application/x-www-form-urlencoded</stringProp>
-              </elementProp>
-            </collectionProp>
-          </HeaderManager>
-          <hashTree/>
           <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Authenticate" enabled="true"/>
           <hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="LOGIN" enabled="true">
@@ -274,6 +358,15 @@
               <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
             </HTTPSamplerProxy>
             <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="" elementType="Header">
+                    <stringProp name="Header.name">Content-Type</stringProp>
+                    <stringProp name="Header.value">application/x-www-form-urlencoded</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
               <com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor guiclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.gui.JSONPathExtractorGui" testclass="com.atlantbh.jmeter.plugins.jsonutils.jsonpathextractor.JSONPathExtractor" testname="SUCCESS_LOGIN" enabled="true">
                 <stringProp name="TestPlan.comments">store the value of the success of the login</stringProp>
                 <stringProp name="VAR">IS_SUCCESS_LOGIN</stringProp>
@@ -289,7 +382,7 @@
               <boolProp name="IfController.evaluateAll">false</boolProp>
             </IfController>
             <hashTree>
-              <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Load html files" enabled="true"/>
+              <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Load html files" enabled="false"/>
               <hashTree>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/static/submission/submissionTemplate.html" enabled="true">
                   <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variables pré-définies" enabled="true">
@@ -312,8 +405,52 @@
                 </HTTPSamplerProxy>
                 <hashTree/>
               </hashTree>
+              <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Submission" enabled="true"/>
+              <hashTree>
+                <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Upload file" enabled="true"/>
+                <hashTree>
+                  <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/submission/uploadFile" enabled="true">
+                    <elementProp name="HTTPsampler.Files" elementType="HTTPFileArgs">
+                      <collectionProp name="HTTPFileArgs.files">
+                        <elementProp name="D:\Programok\_eclipse-manuscript\workspace\manuscript-system\technical\Teszt-fájl-to_upload 20170228.pdf" elementType="HTTPFileArg">
+                          <stringProp name="File.path">D:\Programok\_eclipse-manuscript\workspace\manuscript-system\technical\Teszt-fájl-to_upload 20170228.pdf</stringProp>
+                          <stringProp name="File.paramname">file</stringProp>
+                          <stringProp name="File.mimetype"></stringProp>
+                        </elementProp>
+                      </collectionProp>
+                    </elementProp>
+                    <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variables pré-définies" enabled="true">
+                      <collectionProp name="Arguments.arguments"/>
+                    </elementProp>
+                    <stringProp name="HTTPSampler.domain"></stringProp>
+                    <stringProp name="HTTPSampler.port"></stringProp>
+                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.protocol"></stringProp>
+                    <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                    <stringProp name="HTTPSampler.path">${CONTEXT}/submission/uploadFile</stringProp>
+                    <stringProp name="HTTPSampler.method">POST</stringProp>
+                    <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+                    <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                    <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                    <boolProp name="HTTPSampler.DO_MULTIPART_POST">true</boolProp>
+                    <boolProp name="HTTPSampler.monitor">false</boolProp>
+                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                  </HTTPSamplerProxy>
+                  <hashTree/>
+                </hashTree>
+              </hashTree>
               <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Logout" enabled="true"/>
               <hashTree>
+                <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                  <collectionProp name="HeaderManager.headers">
+                    <elementProp name="" elementType="Header">
+                      <stringProp name="Header.name">Content-Type</stringProp>
+                      <stringProp name="Header.value">application/json</stringProp>
+                    </elementProp>
+                  </collectionProp>
+                </HeaderManager>
+                <hashTree/>
                 <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/logout" enabled="true">
                   <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
                   <elementProp name="HTTPsampler.Arguments" elementType="Arguments">

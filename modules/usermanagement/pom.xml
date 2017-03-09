@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>manuscript</groupId>
-		<artifactId>mainpom</artifactId>
+		<artifactId>manuscript-mainpom</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<groupId>manuscript.module.user.management</groupId>
@@ -24,7 +24,7 @@
 		<module>user-management-persist</module>
 		<module>user-management-service-impl</module>
 		<module>user-management-service</module>
-		<module>user-management-util</module>
+		
 	</modules>
 
 	<dependencies>
@@ -49,6 +49,14 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
 		</dependency>
 	</dependencies>
 </project>

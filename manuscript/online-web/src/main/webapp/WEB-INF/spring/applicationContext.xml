@@ -18,6 +18,7 @@
 
 	<!-- Used to create the basic database data source. -->
 	<jee:jndi-lookup id="DatabaseDS" jndi-name="java:comp/env/jdbc/DatabaseDS" />
+	<jee:jndi-lookup id="saveFilesFolder" jndi-name="java:comp/env/saveFilesFolder" default-value=""/>
 	<!-- <jee:jndi-lookup id="defaultEmailRegex" jndi-name="java:comp/env/defaultEmailRegex" default-value="[a-z0-9\.]{5,15}[@]{1}[a-z0-9]{5,15}\.[a-z]{3,5}$"/> -->
 
 	<!-- database connections -->

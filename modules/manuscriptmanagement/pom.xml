@@ -2,12 +2,11 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>manuscript</groupId>
-		<artifactId>mainpom</artifactId>
+		<artifactId>manuscript-mainpom</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<groupId>manuscript.module.manuscript.management</groupId>
 	<artifactId>manuscript-management</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Manuscript Management Module</name>
 
@@ -24,17 +23,37 @@
 		<module>manuscript-management-persist-mysql</module>
 		<module>manuscript-management-service</module>
 		<module>manuscript-management-service-impl</module>
-		<module>manuscript-management-util</module>
 	</modules>
-
+	
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>manuscript.framework.validation</groupId>
+			<artifactId>validation</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
 		</dependency>
 	</dependencies>
 </project>

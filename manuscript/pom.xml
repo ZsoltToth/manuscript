@@ -2,12 +2,11 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>manuscript</groupId>
-		<artifactId>mainpom</artifactId>
+		<artifactId>manuscript-mainpom</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<groupId>manuscript.system</groupId>
 	<artifactId>manuscript-system</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Manuscript System</name>
 	<description>This is the glue of the whole system</description>
@@ -180,6 +179,26 @@
 		<dependency>
 			<groupId>ro.isdc.wro4j</groupId>
 			<artifactId>wro4j-extensions</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.logging</groupId>
+			<artifactId>jboss-logging</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>angularjs</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>angular-ui-bootstrap</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>angular-material</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
 		</dependency>
 	</dependencies>
 </project>

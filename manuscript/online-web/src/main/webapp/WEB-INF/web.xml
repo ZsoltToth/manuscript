@@ -72,8 +72,14 @@
 		<url-pattern>/wro/*</url-pattern>
 	</filter-mapping>
 
+<!-- 	<resource-ref> -->
+<!-- 		<res-ref-name>defaultEmailRegex</res-ref-name> -->
+<!-- 		<res-type>java.lang.String</res-type> -->
+<!-- 		<res-auth>Application</res-auth> -->
+<!-- 		<res-sharing-scope>Shareable</res-sharing-scope> -->
+<!-- 	</resource-ref> -->
 	<resource-ref>
-		<res-ref-name>defaultEmailRegex</res-ref-name>
+		<res-ref-name>saveFilesFolder</res-ref-name>
 		<res-type>java.lang.String</res-type>
 		<res-auth>Application</res-auth>
 		<res-sharing-scope>Shareable</res-sharing-scope>
