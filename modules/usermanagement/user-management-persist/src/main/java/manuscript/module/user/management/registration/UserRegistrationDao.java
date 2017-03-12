@@ -5,9 +5,7 @@ import java.util.List;
 import manuscript.module.user.management.bean.AcademicDisciplines;
 import manuscript.module.user.management.bean.AdditionalData;
 import manuscript.module.user.management.bean.Role;
-import manuscript.module.user.management.bean.User;
 import manuscript.module.user.management.request.UserRegistrationRequest;
-import manuscript.module.user.management.response.UserRegistrationResponse;
 
 /**
  * 

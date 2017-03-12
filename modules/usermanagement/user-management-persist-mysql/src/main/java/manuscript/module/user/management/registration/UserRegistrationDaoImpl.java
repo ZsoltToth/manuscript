@@ -10,10 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import manuscript.module.user.management.bean.AcademicDisciplines;
 import manuscript.module.user.management.bean.AdditionalData;
 import manuscript.module.user.management.bean.Role;
-import manuscript.module.user.management.bean.User;
 import manuscript.module.user.management.registration.mapper.UserRegistrationMapper;
 import manuscript.module.user.management.request.UserRegistrationRequest;
-import manuscript.module.user.management.response.UserRegistrationResponse;
 
 /**
  * 

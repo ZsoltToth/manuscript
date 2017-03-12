@@ -1,7 +1,5 @@
 package manuscript.validation.custom.annotation.constraint;
 
-import java.util.ArrayList;
-
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
