@@ -5,10 +5,10 @@ package manuscript.module.user.management.response;
  * @author bkovacs2
  *
  */
-public class Errors {
+public class Error {
 
 	String field;
-	String defaultMessage;
+	String message;
 
 	public String getField() {
 		return field;
@@ -18,12 +18,12 @@ public class Errors {
 		this.field = field;
 	}
 
-	public String getDefaultMessage() {
-		return defaultMessage;
+	public String getMessage() {
+		return message;
 	}
 
-	public void setDefaultMessage(String defaultMessage) {
-		this.defaultMessage = defaultMessage;
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 }

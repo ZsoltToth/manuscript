@@ -1,7 +1,6 @@
 package manuscript.module.user.management.registration;
 
 import manuscript.module.user.management.request.UserRegistrationRequest;
-import manuscript.module.user.management.response.UserRegistrationCheckNameResponse;
 import manuscript.module.user.management.response.UserRegistrationPreloadResponse;
 import manuscript.module.user.management.response.UserRegistrationResponse;
 

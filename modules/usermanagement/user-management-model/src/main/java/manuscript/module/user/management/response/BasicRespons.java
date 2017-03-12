@@ -12,31 +12,32 @@ import org.springframework.validation.FieldError;
  *
  */
 public class BasicRespons {
-	private List<Errors> errors;
+	private List<Error> errors;
 	private String exceptionMessage;
+	private String successMessage;
 
 	public void setFieldError(List<FieldError> fieldError) {
 
 		if (errors == null) {
-			errors = new ArrayList<Errors>();
+			errors = new ArrayList<Error>();
 		}
 
 		Iterator<FieldError> iterator = fieldError.iterator();
 
 		while (iterator.hasNext()) {
 			FieldError error = iterator.next();
-			Errors customError = new Errors();
-			customError.setDefaultMessage(error.getDefaultMessage());
+			Error customError = new Error();
+			customError.setMessage(error.getDefaultMessage());
 			customError.setField(error.getField());
 			errors.add(customError);
 		}
 	}
 
-	public List<Errors> getErrors() {
+	public List<Error> getErrors() {
 		return errors;
 	}
 
-	public void setErrors(List<Errors> errors) {
+	public void setErrors(List<Error> errors) {
 		this.errors = errors;
 	}
 
@@ -46,6 +47,14 @@ public class BasicRespons {
 
 	public void setExceptionMessage(String exceptionMessage) {
 		this.exceptionMessage = exceptionMessage;
+	}
+
+	public String getSuccessMessage() {
+		return successMessage;
+	}
+
+	public void setSuccessMessage(String successMessage) {
+		this.successMessage = successMessage;
 	}
 
 }
