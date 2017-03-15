@@ -288,6 +288,7 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+	
 	<distributionManagement>
 		<repository>
 			<id>releases</id>
