@@ -3,6 +3,7 @@ package manuscript.module.user.management.registration.test;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -22,6 +23,7 @@ import manuscript.module.user.management.registration.mapper.UserRegistrationMap
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(loader = AnnotationConfigContextLoader.class, classes = UserRegistrationDaoContext.class)
 @Transactional
+@Ignore
 public class UserRegistrationDaoTest {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserRegistrationDaoTest.class);
