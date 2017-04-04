@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>manuscript</groupId>
 	<artifactId>manuscript-mainpom</artifactId>
@@ -40,6 +41,11 @@
 		<commons-io.version>2.4</commons-io.version>
 		<validation-api.version>1.1.0.Final</validation-api.version>
 		<hibernate-validator.version>5.2.4.Final</hibernate-validator.version>
+
+		<jaxb2-basics-runtime.version>1.11.1</jaxb2-basics-runtime.version>
+		<maven-jaxb2-plugin.version>0.13.2</maven-jaxb2-plugin.version>
+		<krasa-jaxb-tools.version>1.5</krasa-jaxb-tools.version>
+		<jaxb2-basics.version>1.11.1</jaxb2-basics.version>
 
 		<!-- manuscript dependency versions -->
 		<validation.version>0.0.1-SNAPSHOT</validation.version>
@@ -269,13 +275,20 @@
 				<version>${hibernate-validator.version}</version>
 			</dependency>
 
-			<!--####################### manuscript dependencies #######################-->
+			<!-- XSD to JAVA -->
+			<dependency>
+				<groupId>org.jvnet.jaxb2_commons</groupId>
+				<artifactId>jaxb2-basics-runtime</artifactId>
+				<version>${jaxb2-basics-runtime.version}</version>
+			</dependency>
+
+			<!--####################### manuscript dependencies ####################### -->
 			<dependency>
 				<groupId>manuscript.framework.validation</groupId>
 				<artifactId>validation</artifactId>
 				<version>${validation.version}</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>manuscript.framework.security</groupId>
 				<artifactId>manuscript-security-model</artifactId>
@@ -313,5 +326,52 @@
 				</configuration>
 			</plugin>
 		</plugins>
+
+		<pluginManagement>
+			<plugins>
+
+
+				<plugin>
+					<groupId>org.jvnet.jaxb2.maven2</groupId>
+					<artifactId>maven-jaxb2-plugin</artifactId>
+					<version>${maven-jaxb2-plugin.version}</version>
+					<executions>
+						<execution>
+							<phase>generate-resources</phase>
+							<goals>
+								<goal>generate</goal>
+							</goals>
+							<configuration>
+								<generateDirectory>${project.basedir}/src/generated</generateDirectory>
+								<extension>true</extension>
+								<removeOldOutput>true</removeOldOutput>
+								<args>
+<!-- 									<arg>-XtoString-toStringStrategyClass=com.acme.foo.MyToStringStrategy</arg> -->
+									<!-- <arg>-no-header</arg> -->
+									<!-- <arg>-XReplacePrimitives</arg> -->
+									<arg>-XJsr303Annotations</arg>
+									<!-- <arg>-XJsr303Annotations:targetNamespace=a</arg> -->
+									<!-- <arg>-XhashCode</arg> -->
+									<!-- <arg>-Xequals</arg> -->
+									<arg>-Xsetters</arg>
+								</args>
+								<plugins>
+									<plugin>
+										<groupId>com.github.krasa</groupId>
+										<artifactId>krasa-jaxb-tools</artifactId>
+										<version>${krasa-jaxb-tools.version}</version>
+									</plugin>
+									<plugin>
+										<groupId>org.jvnet.jaxb2_commons</groupId>
+										<artifactId>jaxb2-basics</artifactId>
+										<version>${jaxb2-basics.version}</version>
+									</plugin>
+								</plugins>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 </project>
