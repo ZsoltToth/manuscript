@@ -200,5 +200,66 @@
 			<groupId>org.webjars</groupId>
 			<artifactId>bootstrap</artifactId>
 		</dependency>
+		
+		<dependency>
+			<groupId>manuscript.module.user.management</groupId>
+			<artifactId>user-management-controller</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>manuscript.module.user.management</groupId>
+			<artifactId>user-management-model</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>manuscript.module.user.management</groupId>
+			<artifactId>user-management-persist</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>manuscript.module.user.management</groupId>
+			<artifactId>user-management-persist-mysql</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>manuscript.module.user.management</groupId>
+			<artifactId>user-management-service</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>manuscript.module.user.management</groupId>
+			<artifactId>user-management-service-impl</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>manuscript.module.manuscript.management</groupId>
+			<artifactId>manuscript-management-controller</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>manuscript.module.manuscript.management</groupId>
+			<artifactId>manuscript-management-model</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>manuscript.module.manuscript.management</groupId>
+			<artifactId>manuscript-management-persist</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>manuscript.module.manuscript.management</groupId>
+			<artifactId>manuscript-management-persist-mysql</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>manuscript.module.manuscript.management</groupId>
+			<artifactId>manuscript-management-service</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>manuscript.module.manuscript.management</groupId>
+			<artifactId>manuscript-management-service-impl</artifactId>
+		</dependency>
+
+
+
+		<dependency>
+			<groupId>manuscript.framework.security</groupId>
+			<artifactId>manuscript-security-model</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>manuscript.framework.security</groupId>
+			<artifactId>manuscript-security-service</artifactId>
+		</dependency>
 	</dependencies>
 </project>
