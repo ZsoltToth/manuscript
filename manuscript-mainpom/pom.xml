@@ -46,6 +46,9 @@
 		<maven-jaxb2-plugin.version>0.13.2</maven-jaxb2-plugin.version>
 		<krasa-jaxb-tools.version>1.5</krasa-jaxb-tools.version>
 		<jaxb2-basics.version>1.11.1</jaxb2-basics.version>
+		
+		<easymock.version>3.4</easymock.version>
+		<commons-logging.version>1.1.1</commons-logging.version>
 
 		<!-- manuscript dependency versions -->
 		<validation.version>0.0.1-SNAPSHOT</validation.version>
@@ -282,6 +285,18 @@
 				<version>${jaxb2-basics-runtime.version}</version>
 			</dependency>
 
+			<dependency>
+				<groupId>org.easymock</groupId>
+				<artifactId>easymock</artifactId>
+				<version>${easymock.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>commons-logging</groupId>
+				<artifactId>commons-logging</artifactId>
+				<version>${commons-logging.version}</version>
+			</dependency>
+
 			<!--####################### manuscript dependencies ####################### -->
 			<dependency>
 				<groupId>manuscript.framework.validation</groupId>
@@ -346,7 +361,7 @@
 								<extension>true</extension>
 								<removeOldOutput>true</removeOldOutput>
 								<args>
-<!-- 									<arg>-XtoString-toStringStrategyClass=com.acme.foo.MyToStringStrategy</arg> -->
+									<!-- <arg>-XtoString-toStringStrategyClass=com.acme.foo.MyToStringStrategy</arg> -->
 									<!-- <arg>-no-header</arg> -->
 									<!-- <arg>-XReplacePrimitives</arg> -->
 									<arg>-XJsr303Annotations</arg>
