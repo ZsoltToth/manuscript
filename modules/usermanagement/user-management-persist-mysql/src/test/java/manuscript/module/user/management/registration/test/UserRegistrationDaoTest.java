@@ -3,7 +3,6 @@ package manuscript.module.user.management.registration.test;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -23,7 +22,7 @@ import manuscript.module.user.management.registration.mapper.UserRegistrationMap
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(loader = AnnotationConfigContextLoader.class, classes = UserRegistrationDaoContext.class)
 @Transactional
-@Ignore
+//@Ignore
 public class UserRegistrationDaoTest {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserRegistrationDaoTest.class);
@@ -46,12 +45,26 @@ public class UserRegistrationDaoTest {
 
 		password.setPassword("password");
 
-		roleList.add(new Role(1, "AUTHOR_ROLE"));
-		roleList.add(new Role(2, "REVIEWER_ROLE"));
-		
-		academicDisciplines.add(new AcademicDisciplines("01", "Architecture"));
-		academicDisciplines.add(new AcademicDisciplines("02", "Arts and Humanities"));
-		academicDisciplines.add(new AcademicDisciplines("02004", "Art and Design"));
+		roleList.add(createRole(1, "AUTHOR_ROLE"));
+		roleList.add(createRole(2, "REVIEWER_ROLE"));
+
+		academicDisciplines.add(createAcademicDisciplines("01", "Architecture"));
+		academicDisciplines.add(createAcademicDisciplines("02", "Arts and Humanities"));
+		academicDisciplines.add(createAcademicDisciplines("02004", "Art and Design"));
+	}
+
+	private static AcademicDisciplines createAcademicDisciplines(String id, String name) {
+		AcademicDisciplines academicDisciplines = new AcademicDisciplines();
+		academicDisciplines.setAcademicDisciplinesId(id);
+		academicDisciplines.setAcademicDisciplinesName(name);
+		return academicDisciplines;
+	}
+
+	private static Role createRole(int id, String roleName) {
+		Role role = new Role();
+		role.setRoleId(id);
+		role.setRole(roleName);
+		return role;
 	}
 
 	@Test

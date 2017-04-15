@@ -13,6 +13,8 @@ import manuscript.module.user.management.request.UserRegistrationRequest;
  *
  */
 public interface UserRegistrationDao {
+	
+	public final static String ACADEMIC_DISCIPLINES_CACHE = "manuscript.module.user.management.registration.getAcademicDisciplines";
 
 	public boolean isNameReserved(String userName);
 

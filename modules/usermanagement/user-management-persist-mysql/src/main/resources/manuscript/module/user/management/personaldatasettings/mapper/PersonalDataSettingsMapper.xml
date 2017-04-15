@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+  'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<mapper namespace='manuscript.module.user.management.personaldatasettings.mapper.PersonalDataSettingsMapper'>
+	
+	<resultMap type="manuscript.module.user.management.bean.User" id="User">
+		<id column="USERNAME" property="userName"/>
+		<id column="TITLE" property="title"/>
+		<id column="FIRST_NAME" property="firstName"/>
+		<id column="LAST_NAME" property="lastName"/>
+		<id column="EMAIL" property="email"/>
+		<id column="JOB" property="job"/>
+	</resultMap>
+	
+	<resultMap type="manuscript.module.user.management.bean.AcademicDisciplines" id="AcademicDisciplines">
+		<id column="ACADEMIC_DISCIPLINES_ID" jdbcType="VARCHAR" property="academicDisciplinesId" />
+		<id column="ACADEMIC_DISCIPLINES_NAME" jdbcType="VARCHAR" property="academicDisciplinesName" />
+	</resultMap>
+	
+	<select id="getUserData" resultMap="User">
+		select USERNAME, TITLE, FIRST_NAME, LAST_NAME, EMAIL, JOB from usr_alias as alias inner join usr_user as user on alias.USER_ID = user.USER_ID where user.USER_ID = #{userId};
+	</select>
+	
+	<select id="getAcademicDisciplinesById" resultMap="AcademicDisciplines">
+		select ACADEMIC_DISCIPLINES_ID, ACADEMIC_DISCIPLINES_NAME from academic_disciplines where ACADEMIC_DISCIPLINES_ID in (
+			select ACADEMIC_DISCIPLINES_ID from usr_academicdisciplines where USER_ID = #{userId});
+	</select>
+	
+	<update id="updatePersonalData">
+		update usr_user
+			<set>
+				<if test="personalData.title != null">title = #{personalData.title},</if>
+				<if test="personalData.firstName != null">first_name = #{personalData.firstName},</if>
+				<if test="personalData.lastName != null">last_name = #{personalData.lastName},</if>
+				<if test="personalData.job != null">job = #{personalData.job},</if>
+				<if test="personalData.email != null">email = #{personalData.email}</if>
+			</set>
+		where user_id = #{userId}
+	</update>
+	
+	<select id="getPasswordByUserId" resultType="string">
+		select password from usr_password where user_id = #{userId}
+	</select>
+	
+	<update id="updatePasswordByUserId">
+		update usr_password
+			<set>
+				password = #{password.encryptedPassword},
+				creationdate = CURRENT_TIMESTAMP,
+				expirydate = DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 150 DAY)
+			</set>
+		where user_id = #{password.userId}
+	</update>
+	
+	<delete id="removeAcademicDisciplinesByUserId">
+		delete from usr_academicdisciplines where user_id = #{userId}
+	</delete>
+	
+	<insert id="insertAcademicDisciplinesByUserId" parameterType="java.util.List">
+	INSERT INTO
+	    USR_ACADEMICDISCIPLINES
+	    (
+	        ACADEMIC_DISCIPLINES_ID,
+	        USER_ID
+	    )
+	    VALUES
+	    <foreach item="element" collection="disciplines"  separator=",">
+	        (
+	        #{element.academicDisciplinesId} , #{userId}
+	        )
+    	</foreach>
+	</insert>
+</mapper>

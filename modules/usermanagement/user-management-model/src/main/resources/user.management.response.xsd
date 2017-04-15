@@ -1,0 +1,56 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://manuscript/module/user/management/response"
+	xmlns="http://manuscript/module/user/management/response" xmlns:bean="http://manuscript/module/user/management/bean"
+	elementFormDefault="qualified">
+
+	<xsd:import namespace="http://manuscript/module/user/management/bean"
+		schemaLocation="user.management.bean.xsd" />
+
+	<xsd:complexType name="changePasswordResponse">
+		<xsd:complexContent>
+			<xsd:extension base="bean:basicResponse" />
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="savePersonalDataResponse">
+		<xsd:complexContent>
+			<xsd:extension base="bean:basicResponse" />
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="personalDataSettingsPreloadResponse">
+		<xsd:complexContent>
+			<xsd:extension base="bean:basicResponse">
+				<xsd:sequence>
+					<xsd:element name="User" type="bean:user" />
+					<xsd:element name="AcademicDisciplines" type="bean:academicDisciplines"
+						minOccurs="1" maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="userRegistrationPreloadResponse">
+		<xsd:complexContent>
+			<xsd:extension base="bean:basicResponse">
+				<xsd:sequence>
+					<xsd:element name="AcademicDisciplines" type="bean:academicDisciplines"
+						minOccurs="1" maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<xsd:complexType name="userRegistrationResponse">
+		<xsd:complexContent>
+			<xsd:extension base="bean:basicResponse"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="updateAcademicDisciplinesResponse">
+		<xsd:complexContent>
+			<xsd:extension base="bean:basicResponse"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+</xsd:schema>

@@ -2,7 +2,7 @@ package manuscript.module.user.management.registration;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,8 +21,12 @@ import manuscript.module.user.management.request.UserRegistrationRequest;
 @Repository
 public class UserRegistrationDaoImpl implements UserRegistrationDao {
 
-	@Autowired
+//	@Autowired
 	private UserRegistrationMapper userRegistrationMapper;
+	
+	public UserRegistrationDaoImpl(UserRegistrationMapper userRegistrationMapper) {
+		this.userRegistrationMapper = userRegistrationMapper;
+	}
 
 	@Override
 	public boolean isNameReserved(String userName) {
@@ -30,6 +34,7 @@ public class UserRegistrationDaoImpl implements UserRegistrationDao {
 	}
 
 	@Override
+	@Cacheable(UserRegistrationDao.ACADEMIC_DISCIPLINES_CACHE)
 	public List<AcademicDisciplines> getAcademicDisciplines() {
 		return userRegistrationMapper.getAcademicDisciplines();
 	}

@@ -1,0 +1,85 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://manuscript/module/user/management/bean" xmlns="http://manuscript/module/user/management/bean"
+	elementFormDefault="qualified">
+
+	<xsd:simpleType name="emailType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[^@]+@[^\.]+\..+" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="nameType">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="3" />
+			<xsd:maxLength value="50" />
+			<xsd:whiteSpace value="collapse" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="passwordType">
+		<xsd:restriction base="xsd:string">
+<!-- 			<xsd:pattern value="a-zA-Z" /> -->
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:complexType name="role">
+		<xsd:sequence>
+			<xsd:element name="RoleId" type="xsd:int" />
+			<xsd:element name="Role" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="user">
+		<xsd:sequence>
+			<xsd:element name="Title" type="xsd:string" />
+			<xsd:element name="FirstName" type="nameType" />
+			<xsd:element name="LastName" type="nameType" />
+			<xsd:element name="UserName" type="nameType" />
+			<xsd:element name="Job" type="xsd:string" />
+			<xsd:element name="Email" type="emailType" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="password">
+		<xsd:sequence>
+			<xsd:element name="Password" type="passwordType" />
+			<xsd:element name="PasswordAgain" type="passwordType" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="passwordDetails">
+		<xsd:sequence>
+			<xsd:element name="PasswordId" type="xsd:string" />
+			<xsd:element name="UserId" type="xsd:string" />
+			<xsd:element name="BCryptedPassword" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="additionalData">
+		<xsd:sequence>
+			<xsd:element name="DefaultRoles" type="role" minOccurs="0"
+				maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="academicDisciplines">
+		<xsd:sequence>
+			<xsd:element name="AcademicDisciplinesId" type="xsd:string" />
+			<xsd:element name="AcademicDisciplinesName" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="error">
+		<xsd:sequence>
+			<xsd:element name="Field" type="xsd:string" />
+			<xsd:element name="Message" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="basicResponse">
+		<xsd:sequence>
+			<xsd:element name="ExceptionMessage" type="xsd:string" />
+			<xsd:element name="SuccessMessage" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

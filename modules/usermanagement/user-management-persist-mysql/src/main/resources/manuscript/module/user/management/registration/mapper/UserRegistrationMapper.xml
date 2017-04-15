@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+  'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<mapper namespace='manuscript.module.user.management.registration.mapper.UserRegistrationMapper'>
+	
+	<resultMap type="manuscript.module.user.management.bean.AcademicDisciplines" id="AcademicDisciplines">
+		<id column="ACADEMIC_DISCIPLINES_ID" jdbcType="VARCHAR" property="academicDisciplinesId" />
+		<id column="ACADEMIC_DISCIPLINES_NAME" jdbcType="VARCHAR" property="academicDisciplinesName" />
+	</resultMap>
+	
+	<resultMap type="manuscript.module.user.management.bean.Role" id="Role">
+		<id column="ROLE_ID" property="roleId"/>
+		<id column="ROLE" property="role"/>
+	</resultMap>
+
+	<select id="isUserNameReserved" resultType="int">
+		SELECT COUNT(USERNAME) FROM USR_ALIAS WHERE USERNAME = #{userName};
+	</select>
+
+	<select id="getAcademicDisciplines" resultMap="AcademicDisciplines">
+		SELECT AD.ACADEMIC_DISCIPLINES_ID, AD.ACADEMIC_DISCIPLINES_NAME FROM ACADEMIC_DISCIPLINES AD;
+	</select>
+
+	<select id="getNextCustomerId" resultType="int">
+		SELECT USER_ID+1 FROM USR_ALIAS ORDER BY USER_ID DESC LIMIT 1;
+	</select>
+	
+	<select id="getNextPasswordId" resultType="int">
+		SELECT PASSWORD_ID+1 FROM USR_PASSWORD ORDER BY PASSWORD_ID DESC LIMIT 1;
+	</select>
+	
+	<select id="getDefaultRoles" resultMap="Role">
+		SELECT ROLE_ID, ROLE FROM ROLE WHERE IS_DEFAULT = 1;
+	</select>
+	
+	<insert id="insertUserAlias">
+		INSERT INTO USR_ALIAS (username) values (#{userName});
+	</insert>
+	
+	<insert id="insertUser">
+	INSERT INTO
+	    USR_USER
+	    (
+	        USER_ID,
+	        TITLE,
+	        FIRST_NAME,
+	        LAST_NAME,
+	        EMAIL,
+	        JOB
+	    )
+	    VALUES
+	    (
+	        #{userId},
+	        #{user.title},
+	        #{user.firstName},
+	        #{user.lastName},
+	        #{user.email},
+	        #{user.job}
+	    );
+	</insert>
+	
+	<insert id="insertPassword">
+	INSERT INTO
+	    usr_password
+	    (
+	        USER_ID,
+	        PASSWORD,
+	        CREATIONDATE,
+	        EXPIRYDATE
+	    )
+	    VALUES
+	    (
+	        #{userId},
+	        #{password.password},
+	        CURRENT_TIMESTAMP,
+	        DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 150 DAY)
+	    );
+	</insert>
+	
+	<insert id="insertLogin">
+	INSERT INTO
+	    login
+	    (
+	        USERNAME,
+	        PASSWORD_ID
+	    )
+	    VALUES
+	    (
+	        #{userName},
+	        #{passwordId}
+	    );
+	</insert>
+	
+	<insert id="insertUserRoles" parameterType="java.util.List">
+	INSERT INTO
+	    usr_roles
+	    (
+	        ROLE_ID,
+	        USER_ID
+	    ) 
+	    VALUES
+	     <foreach item="element" collection="roles"  separator=",">
+        (
+        #{element.roleId} , #{userId}
+        )
+    	</foreach>
+	</insert>
+	
+	<select id="getUserId" resultType="int">
+		SELECT USER_ID FROM USR_ALIAS WHERE USERNAME = #{userName};
+	</select>
+	
+	<select id="getPasswordId" resultType="int">
+		SELECT PASSWORD_ID FROM USR_PASSWORD WHERE USER_ID = #{userId};
+	</select>
+	
+	<select id="insertAcadamicDisciplines" parameterType="java.util.List">
+	INSERT INTO
+	    USR_ACADEMICDISCIPLINES
+	    (
+	        ACADEMIC_DISCIPLINES_ID,
+	        USER_ID
+	    )
+	    VALUES
+	    <foreach item="element" collection="academicDisciplines"  separator=",">
+	        (
+	        #{element.academicDisciplinesId} , #{userId}
+	        )
+    	</foreach>
+	</select>
+	
+</mapper>

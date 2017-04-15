@@ -1,0 +1,46 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://manuscript/module/user/management/request"
+	xmlns="http://manuscript/module/user/management/request" xmlns:bean="http://manuscript/module/user/management/bean"
+	elementFormDefault="qualified">
+
+	<xsd:import namespace="http://manuscript/module/user/management/bean"
+		schemaLocation="user.management.bean.xsd" />
+
+	<xsd:complexType name="userRegistrationRequest">
+		<xsd:sequence>
+			<xsd:element name="User" type="bean:user" />
+			<xsd:element name="Password" type="bean:password" />
+			<xsd:element name="AcademicDisciplines" type="bean:academicDisciplines" minOccurs="1" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="savePersonalDataRequest">
+		<xsd:sequence>
+			<xsd:element name="Title" type="xsd:string" />
+			<xsd:element name="FirstName" type="bean:nameType" />
+			<xsd:element name="LastName" type="bean:nameType" />
+			<xsd:element name="Job" type="xsd:string" />
+			<xsd:element name="Email" type="bean:emailType" />
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="changePasswordRequest">
+		<xsd:sequence>
+			<xsd:element name="Password" type="bean:password" />
+			<xsd:element name="OldPassword" type="bean:passwordType" />
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="updatePassword">
+		<xsd:sequence>
+			<xsd:element name="userId" type="xsd:string" />
+			<xsd:element name="encryptedPassword" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="updateAcademicDisciplinesRequest">
+		<xsd:sequence>
+			<xsd:element name="AcademicDisciplines" type="bean:academicDisciplines" minOccurs="1" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

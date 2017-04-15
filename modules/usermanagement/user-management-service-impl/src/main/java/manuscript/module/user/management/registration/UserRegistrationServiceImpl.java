@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -27,8 +26,11 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
 
 	private final static Logger LOGGER = LoggerFactory.getLogger(UserRegistrationServiceImpl.class);
 
-	@Autowired
 	private UserRegistrationDao userRegistrationDao;
+
+	public UserRegistrationServiceImpl(UserRegistrationDao userRegistrationDao) {
+		this.userRegistrationDao = userRegistrationDao;
+	}
 
 	@Override
 	public UserRegistrationPreloadResponse userRegistrationPreload() {
@@ -38,7 +40,7 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
 	}
 
 	@Override
-	public UserRegistrationResponse createRegistration(UserRegistrationRequest request) {
+	public UserRegistrationResponse createRegistration(UserRegistrationRequest request) throws UserNameAlreadyUsedException {
 		UserRegistrationResponse response = new UserRegistrationResponse();
 		AdditionalData additionalData = new AdditionalData();
 
@@ -48,17 +50,15 @@ public class UserRegistrationServiceImpl implements UserRegistrationService {
 		}
 
 		passwordParityCheck(request.getPassword());
-		
 		additionalData.setDefaultRoles(getDefaultRoles());
 
 		try {
-		 userRegistrationDao.createRegistration(request, additionalData);
-		 LOGGER.debug("Registration success with customer id");
-		 } catch (Exception e) {
-		 e.printStackTrace();
-		 }
+			userRegistrationDao.createRegistration(request, additionalData);
+			LOGGER.debug("Registration success. Created user is {}", request.getUser());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-		response.setSuccess(true);
 		return response;
 	}
 
