@@ -1,0 +1,27 @@
+<configuration debug="true" scan="true" scanPeriod="5 seconds">
+ 
+                <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+                                <file>C:/Users/Balazs Kovacs/Desktop/eclipse/logs/${applicationName}.log</file>
+                                <encoder>
+                                                <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+                                </encoder>
+                </appender>
+ 
+                <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+                                <layout class="ch.qos.logback.classic.PatternLayout">
+                                                <pattern>%date %.-1level %mdc{RootId} %logger{25}.%method:%line - %m%n</pattern>
+                                </layout>
+                </appender>
+ 
+                <logger name="manuscript" level="debug" />
+                <logger name="java.sql" level="debug" />
+				<logger name="org" level="debug" />
+ 
+ 
+                <root level="debug">
+                                <appender-ref ref="STDOUT" />                             
+                </root>
+                <root level="debug">
+                                <appender-ref ref="FILE" />
+                </root>
+</configuration>
